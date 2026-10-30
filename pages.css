@@ -183,3 +183,4 @@
 .soc a{font-size:.85rem;font-weight:600;color:var(--blue);padding:6px 14px;border:1px solid var(--line);border-radius:999px;transition:.2s}
 .soc a:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 @media(max-width:700px){.founders{grid-template-columns:minmax(0,340px)}}
+.center-tags{justify-content:center;margin-top:16px}
