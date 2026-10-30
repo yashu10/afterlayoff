@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — After Layoff</title>
+<meta name="description" content="Explore the kinds of products After Layoff builds: SaaS dashboards, e-commerce, AI assistants, mobile apps, automation and cloud migrations.">
+<link rel="icon" href="After Layoff Logo with Upward Arrow.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=block" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Portfolio</span>
+    <h1>Products we <span class="grad">design &amp; engineer</span></h1>
+    <p>A closer look at how we approach real-world problems — from the challenge, to the solution, to the stack.</p>
+  </div>
+</section>
+
+<section class="section tight">
+  <div class="wrap">
+    <div class="notice reveal">Design, branding and social media work below is <b>real work</b> by our founder. Items tagged <b>Concept</b> are development case studies showing how we'd solve typical client problems — real dev projects will be added as we ship them.</div>
+    <div class="filters reveal" id="filters"></div>
+    <div class="pgrid" id="pgrid"></div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="projects.js"></script>
+<script src="script.js"></script>
+<script>
+const cats = ['All', ...new Set(PROJECTS.map(p => p.cat))];
+const grid = document.getElementById('pgrid'), fl = document.getElementById('filters');
+function render(cat) {
+  grid.innerHTML = PROJECTS.filter(p => cat === 'All' || p.cat === cat).map(projectCard).join('');
+  observeReveal(grid);
+  fl.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.c === cat));
+}
+fl.innerHTML = cats.map(c => `<button data-c="${c}">${c}</button>`).join('');
+fl.onclick = e => e.target.dataset.c && render(e.target.dataset.c);
+render('All');
+</script>
+</body>
+</html>

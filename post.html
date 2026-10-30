@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog — After Layoff</title>
+<link rel="icon" href="After Layoff Logo with Upward Arrow.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=block" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main"></main>
+<div id="site-footer"></div>
+<script src="blog.js"></script>
+<script src="script.js"></script>
+<script>
+const i = Math.max(0, POSTS.findIndex(p => p.slug === new URLSearchParams(location.search).get('p')));
+const p = POSTS[i], others = POSTS.filter((_, k) => k !== i).slice(0, 3);
+document.title = `${p.title} — After Layoff Blog`;
+const fmt = d => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+document.getElementById('main').innerHTML = `
+<section class="case-hero" style="background:${p.grad}">
+  <div class="wrap narrow">
+    <a href="blog.html" class="back">← All articles</a>
+    <span class="badge">${p.cat}</span>
+    <h1 style="font-size:clamp(2rem,4.5vw,3.2rem)">${p.title}</h1>
+    <p>${fmt(p.date)} · ${p.read} min read · By the After Layoff team</p>
+  </div>
+</section>
+<article class="section tight"><div class="wrap narrow prose">${p.body}
+  <div class="share"><b>Share:</b>
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(location.href)}">LinkedIn</a>
+    <a target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(p.title + ' ' + location.href)}">WhatsApp</a>
+  </div>
+</div></article>
+<section class="section soft tight"><div class="wrap">
+  <div class="head"><h2>Keep reading</h2></div>
+  <div class="pgrid">${others.map(o => `
+    <a class="pcard" href="post.html?p=${o.slug}"><div class="pimg" style="background:${o.grad}"><span>${o.icon}</span><em>${o.cat}</em></div>
+    <div class="pbody"><h3>${o.title}</h3><p>${o.excerpt}</p><span class="link">Read article →</span></div></a>`).join('')}</div>
+</div></section>`;
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Study — After Layoff</title>
+<link rel="icon" href="After Layoff Logo with Upward Arrow.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=block" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main"></main>
+<div id="site-footer"></div>
+<script src="projects.js"></script>
+<script src="script.js"></script>
+<script>
+const i = Math.max(0, PROJECTS.findIndex(p => p.slug === new URLSearchParams(location.search).get('p')));
+const p = PROJECTS[i], prev = PROJECTS[(i + PROJECTS.length - 1) % PROJECTS.length], next = PROJECTS[(i + 1) % PROJECTS.length];
+document.title = `${p.title} — Case Study | After Layoff`;
+const sec = (h, body) => body ? `<div class="reveal"><h2>${h}</h2>${body}</div>` : '';
+const pairs = a => a && `<div class="decisions">${a.map(([t, d]) => `<div><h4>${t}</h4><p>${d}</p></div>`).join('')}</div>`;
+document.getElementById('main').innerHTML = `
+<section class="case-hero" style="background:${p.grad}">
+  <div class="wrap case-hero-grid">
+    <div>
+      <a href="portfolio.html" class="back">← All projects</a>
+      <span class="badge">${p.cat} · ${p.real ? 'Case study' : 'Concept case study'}</span>
+      <h1>${p.title}</h1>
+      <p>${p.tag}</p>
+    </div>
+    ${p.img ? `<img class="case-img" src="${p.img}" alt="${p.title}">` : ''}
+  </div>
+</section>
+<section class="section tight">
+  <div class="wrap case">
+    <div class="case-main">
+      ${sec('The challenge', p.challenge && `<p>${p.challenge}</p>`)}
+      ${sec('Our solution', p.solution && `<p>${p.solution}</p>`)}
+      ${sec('Research & thinking', pairs(p.process))}
+      ${sec(p.challenge ? 'Key design decisions' : 'What we delivered', pairs(p.decisions))}
+      ${sec(p.real ? 'Outcome' : 'Outcomes we design for', p.outcome && `<div class="outs"><div>${p.outcome}</div></div>`)}
+      ${sec('What we would do next', p.next && `<p>${p.next}</p>`)}
+    </div>
+    <aside class="case-side reveal">
+      <div class="box">${(p.meta || []).map(([k, v]) => `<h4>${k}</h4><p>${v}</p>`).join('')}</div>
+      ${(p.links || []).map(([t, u]) => `<a href="${u}" target="_blank" rel="noopener" class="btn ghost">${t} ↗</a>`).join('')}
+      <a href="contact.html" class="btn">Build something similar →</a>
+    </aside>
+  </div>
+</section>
+<section class="section soft tight">
+  <div class="wrap pn">
+    <a href="project.html?p=${prev.slug}">← ${prev.title}</a>
+    <a href="project.html?p=${next.slug}">${next.title} →</a>
+  </div>
+</section>`;
+observeReveal();
+</script>
+</body>
+</html>

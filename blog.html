@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog — After Layoff</title>
+<meta name="description" content="Insights on web development, UI/UX design, social media, branding, AI and building a startup — from the After Layoff team.">
+<link rel="icon" href="After Layoff Logo with Upward Arrow.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=block" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Blog</span>
+    <h1>Ideas, guides &amp; <span class="grad">stories</span></h1>
+    <p>Practical insights on tech, design and building a business — from the After Layoff team.</p>
+  </div>
+</section>
+<section class="section tight">
+  <div class="wrap">
+    <div class="filters reveal" id="filters"></div>
+    <div id="featured"></div>
+    <div class="pgrid" id="bgrid"></div>
+  </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="blog.js"></script>
+<script src="script.js"></script>
+<script>
+const fmt = d => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const card = p => `
+  <a class="pcard reveal" href="post.html?p=${p.slug}">
+    <div class="pimg" style="background:${p.grad}"><span>${p.icon}</span><em>${p.cat}</em></div>
+    <div class="pbody"><small class="meta">${fmt(p.date)} · ${p.read} min read</small><h3>${p.title}</h3><p>${p.excerpt}</p><span class="link">Read article →</span></div>
+  </a>`;
+const cats = ['All', ...new Set(POSTS.map(p => p.cat))];
+const fl = document.getElementById('filters');
+function render(cat) {
+  const list = POSTS.filter(p => cat === 'All' || p.cat === cat);
+  const [first, ...rest] = list;
+  document.getElementById('featured').innerHTML = cat === 'All' && first ? `
+    <a class="bfeat reveal" href="post.html?p=${first.slug}" style="background:${first.grad}">
+      <span class="badge">Latest · ${first.cat}</span><h2>${first.title}</h2><p>${first.excerpt}</p><small>${fmt(first.date)} · ${first.read} min read</small>
+      <span class="bicon">${first.icon}</span>
+    </a>` : '';
+  document.getElementById('bgrid').innerHTML = (cat === 'All' ? rest : list).map(card).join('');
+  observeReveal();
+  fl.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.c === cat));
+}
+fl.innerHTML = cats.map(c => `<button data-c="${c}">${c}</button>`).join('');
+fl.onclick = e => e.target.dataset.c && render(e.target.dataset.c);
+render('All');
+</script>
+</body>
+</html>
