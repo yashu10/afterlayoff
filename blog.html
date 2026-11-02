@@ -47,7 +47,7 @@
 const fmt = d => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 const card = p => `
   <a class="pcard reveal" href="post.html?p=${p.slug}">
-    <div class="pimg" style="background:${p.grad}"><span>${p.icon}</span><em>${p.cat}</em></div>
+    <div class="pimg" style="background:${p.grad}"><img src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.remove()"><em>${p.cat}</em></div>
     <div class="pbody"><small class="meta">${fmt(p.date)} · ${p.read} min read</small><h3>${p.title}</h3><p>${p.excerpt}</p><span class="link">Read article →</span></div>
   </a>`;
 const cats = ['All', ...new Set(POSTS.map(p => p.cat))];
@@ -56,9 +56,8 @@ function render(cat) {
   const list = POSTS.filter(p => cat === 'All' || p.cat === cat);
   const [first, ...rest] = list;
   document.getElementById('featured').innerHTML = cat === 'All' && first ? `
-    <a class="bfeat reveal" href="post.html?p=${first.slug}" style="background:${first.grad}">
+    <a class="bfeat reveal" href="post.html?p=${first.slug}" style="background:linear-gradient(90deg,rgba(7,12,28,.92) 25%,rgba(7,12,28,.35)),url('${first.imgLarge}') center/cover,${first.grad}">
       <span class="badge">Latest · ${first.cat}</span><h2>${first.title}</h2><p>${first.excerpt}</p><small>${fmt(first.date)} · ${first.read} min read</small>
-      <span class="bicon">${first.icon}</span>
     </a>` : '';
   document.getElementById('bgrid').innerHTML = (cat === 'All' ? rest : list).map(card).join('');
   observeReveal();

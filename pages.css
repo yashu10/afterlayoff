@@ -196,3 +196,8 @@
 .nav:has(~ #main .case-hero){background:rgba(255,255,255,.97)}
 .links a,.btn.small{transition:color .2s,transform .2s}
 .mark{image-rendering:auto}
+
+/* ---- blog photos ---- */
+.post-img{display:block;width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:22px;margin-bottom:34px;box-shadow:0 30px 60px -34px rgba(10,60,180,.55)}
+.bfeat{min-height:300px;display:flex;flex-direction:column;justify-content:center}
+.case-hero .badge{margin-top:4px}

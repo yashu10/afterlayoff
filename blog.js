@@ -1,7 +1,7 @@
 // Blog posts. Add a new object to publish a new article. `body` is simple HTML.
 const POSTS = [
   {
-    slug: 'llms-for-business-what-works', title: 'LLMs for business in 2026: what actually works (and what is hype)', cat: 'LLM', date: '2026-11-02', read: 6, icon: '🧠', grad: 'linear-gradient(135deg,#0a2a7a,#00a3ff)',
+    slug: 'llms-for-business-what-works', imgId: '1677442136019-21780ecad995', title: 'LLMs for business in 2026: what actually works (and what is hype)', cat: 'LLM', date: '2026-11-02', read: 6, icon: '🧠', grad: 'linear-gradient(135deg,#0a2a7a,#00a3ff)',
     excerpt: 'Large language models are now a normal part of business software. Here is where they deliver real value today — and where teams still waste money.',
     body: `<p>Two years ago, "add AI" was a pitch. Today it is a baseline expectation. Customers expect smart search, instant answers and less paperwork. But the gap between a flashy demo and a reliable product is still wide. Here is what we see working in the market right now.</p>
 <h2>Where LLMs deliver real value</h2>
@@ -15,7 +15,7 @@ const POSTS = [
 <p>Want help choosing the right use case? See our <a href="services.html#ai">AI &amp; Automation service</a> or <a href="contact.html">talk to us</a>.</p>`
   },
   {
-    slug: 'ai-agents-explained', title: 'AI agents explained: what they can (and cannot) do for your business', cat: 'AI', date: '2026-11-01', read: 6, icon: '🤖', grad: 'linear-gradient(135deg,#111827,#0a5cff)',
+    slug: 'ai-agents-explained', imgId: '1485827404703-89b55fcc595e', title: 'AI agents explained: what they can (and cannot) do for your business', cat: 'AI', date: '2026-11-01', read: 6, icon: '🤖', grad: 'linear-gradient(135deg,#111827,#0a5cff)',
     excerpt: 'Everyone is talking about AI agents. Here is a plain-English guide: how they differ from chatbots, real use cases and the risks to plan for.',
     body: `<p>A chatbot answers questions. An <b>AI agent</b> takes action: it can read an email, look up an order, update your CRM, draft a reply and ask a human to approve — all in one flow. That is why agents are the biggest shift in business AI right now.</p>
 <h2>How an agent works</h2>
@@ -30,7 +30,7 @@ const POSTS = [
 <p>Interested in an agent for your business? <a href="contact.html">Let's discuss it</a>.</p>`
   },
   {
-    slug: 'rag-vs-fine-tuning', title: 'RAG vs fine-tuning: which one does your business need?', cat: 'LLM', date: '2026-10-31', read: 5, icon: '📚', grad: 'linear-gradient(135deg,#6366f1,#0a5cff)',
+    slug: 'rag-vs-fine-tuning', imgId: '1620712943543-bcc4688e7485', title: 'RAG vs fine-tuning: which one does your business need?', cat: 'LLM', date: '2026-10-31', read: 5, icon: '📚', grad: 'linear-gradient(135deg,#6366f1,#0a5cff)',
     excerpt: 'Two ways to make an LLM know your business. One is usually cheaper, safer and faster. Here is how to choose.',
     body: `<p>A general model knows the internet — not your pricing, policies or customers. There are two main ways to fix that.</p>
 <h2>RAG (Retrieval-Augmented Generation)</h2>
@@ -46,7 +46,7 @@ const POSTS = [
 <p>We build and evaluate both. See our <a href="project.html?p=supportbot">SupportBot AI case study</a>.</p>`
   },
   {
-    slug: 'build-ai-chatbot-for-business', title: 'How to build an AI chatbot for your business: a step-by-step guide', cat: 'AI', date: '2026-10-30', read: 6, icon: '💬', grad: 'linear-gradient(135deg,#0891b2,#0a2a7a)',
+    slug: 'build-ai-chatbot-for-business', imgId: '1563986768609-322da13575f3', title: 'How to build an AI chatbot for your business: a step-by-step guide', cat: 'AI', date: '2026-10-30', read: 6, icon: '💬', grad: 'linear-gradient(135deg,#0891b2,#0a2a7a)',
     excerpt: 'From picking the use case to launching on your website and WhatsApp — the practical steps, costs and mistakes to avoid.',
     body: `<p>A well-built AI chatbot can answer customers around the clock and free your team from repetitive questions. A badly built one frustrates people. Here is the process we follow.</p>
 <h2>Step 1: Define the job</h2><p>What should the bot do? Answer FAQs, qualify leads, book appointments, track orders? Choose one or two jobs and a success metric, like "resolve 40% of questions without a human".</p>
@@ -60,7 +60,7 @@ const POSTS = [
 <p>Need a chatbot built? <a href="contact.html">Tell us your use case</a>.</p>`
   },
   {
-    slug: 'safe-ai-privacy-for-companies', title: 'Using AI safely: how to protect company data when using LLMs', cat: 'AI', date: '2026-10-29', read: 5, icon: '🔒', grad: 'linear-gradient(135deg,#1e3a8a,#10b981)',
+    slug: 'safe-ai-privacy-for-companies', imgId: '1550751827-4bd374c3f58b', title: 'Using AI safely: how to protect company data when using LLMs', cat: 'AI', date: '2026-10-29', read: 5, icon: '🔒', grad: 'linear-gradient(135deg,#1e3a8a,#10b981)',
     excerpt: 'Employees are already pasting company data into AI tools. A practical checklist for privacy, security and compliance.',
     body: `<p>AI tools are useful — and risky when used without rules. Many companies already have "shadow AI": staff pasting customer data or source code into public chatbots. Here is how to get the benefits without the exposure.</p>
 <h2>1. Write a simple AI usage policy</h2><p>Define what data may never be shared with AI tools (passwords, personal data, contracts, source code) and which approved tools to use instead.</p>
@@ -73,7 +73,7 @@ const POSTS = [
 <p>We design AI systems with privacy and security built in. <a href="contact.html">Ask us about a safe AI rollout</a>.</p>`
   },
   {
-    slug: 'laid-off-start-it-company', title: 'Laid off? Here is how to turn it into your own IT company', cat: 'Startup', date: '2026-10-28', read: 5, icon: '🚀', grad: 'linear-gradient(135deg,#0a2a7a,#0a5cff)',
+    slug: 'laid-off-start-it-company', imgId: '1521737604893-d14cc237f11d', title: 'Laid off? Here is how to turn it into your own IT company', cat: 'Startup', date: '2026-10-28', read: 5, icon: '🚀', grad: 'linear-gradient(135deg,#0a2a7a,#0a5cff)',
     excerpt: 'A layoff hurts — but it can also be the push you needed. A practical, step-by-step plan for starting a services company from scratch.',
     body: `<p>A layoff feels like the floor disappearing. But many great companies started exactly there. If you are a developer, designer or marketer with real skills, you already own the most important asset: the ability to deliver.</p>
 <h2>1. Start with the skill you can sell this month</h2><p>Do not wait for a perfect product idea. Pick the services you can already deliver — websites, apps, UI design, social media creatives — and sell those first. Services give you cash flow while you learn what the market wants.</p>
@@ -84,7 +84,7 @@ const POSTS = [
 <p><b>The takeaway:</b> a layoff is not the end of your story. Start small, stay consistent and keep shipping.</p>`
   },
   {
-    slug: 'website-cost-india', title: 'How much does a business website cost in 2026?', cat: 'Web', date: '2026-10-22', read: 4, icon: '💰', grad: 'linear-gradient(135deg,#0ea5e9,#22d3ee)',
+    slug: 'website-cost-india', imgId: '1498050108023-c5249f4df085', title: 'How much does a business website cost in 2026?', cat: 'Web', date: '2026-10-22', read: 4, icon: '💰', grad: 'linear-gradient(135deg,#0ea5e9,#22d3ee)',
     excerpt: 'Price depends on scope, not magic. Here is what drives the cost of a website and how to budget smartly.',
     body: `<p>"How much for a website?" is the most common question we get — and the honest answer is: it depends. Here is what actually moves the price.</p>
 <h2>What affects the cost</h2><ul><li><b>Number of pages</b> — a 5-page company site is very different from a 50-page catalogue.</li><li><b>Custom design vs template</b> — custom UI/UX takes design time but converts better.</li><li><b>Features</b> — payments, logins, booking, dashboards and integrations add engineering work.</li><li><b>Content</b> — copywriting, photography and graphics.</li><li><b>SEO &amp; performance</b> — important, and worth doing right from day one.</li></ul>
@@ -93,7 +93,7 @@ const POSTS = [
 <p>Want a clear estimate? <a href="contact.html">Tell us about your project</a> and we will reply within 24 hours.</p>`
   },
   {
-    slug: 'ux-design-process', title: 'Our UI/UX design process: from research to handoff', cat: 'Design', date: '2026-10-15', read: 5, icon: '🎨', grad: 'linear-gradient(135deg,#6366f1,#0a5cff)',
+    slug: 'ux-design-process', imgId: '1581291518857-4e27b48ff24e', title: 'Our UI/UX design process: from research to handoff', cat: 'Design', date: '2026-10-15', read: 5, icon: '🎨', grad: 'linear-gradient(135deg,#6366f1,#0a5cff)',
     excerpt: 'Good design is not decoration. This is the exact process we follow to design apps people understand at first glance.',
     body: `<p>Great interfaces feel obvious — but that simplicity is the result of a structured process.</p>
 <h2>1. Understand</h2><p>Who is using this, what are they trying to do, and what gets in their way? We run stakeholder interviews, review competitors and write a clear problem statement.</p>
@@ -103,14 +103,14 @@ const POSTS = [
 <p>See this process in action in our <a href="project.html?p=prage">PRAGE EV bike rental</a> case study.</p>`
   },
   {
-    slug: 'social-media-for-small-business', title: '7 social media design tips for small businesses', cat: 'Social Media', date: '2026-10-08', read: 4, icon: '📲', grad: 'linear-gradient(135deg,#db2777,#f59e0b)',
+    slug: 'social-media-for-small-business', imgId: '1432888622747-4eb9a8efeb07', title: '7 social media design tips for small businesses', cat: 'Social Media', date: '2026-10-08', read: 4, icon: '📲', grad: 'linear-gradient(135deg,#db2777,#f59e0b)',
     excerpt: 'You do not need a big budget to look professional online. Seven practical rules for posts that get noticed.',
     body: `<p>Consistency beats occasional brilliance. Here is how to make your social media look professional.</p>
 <ul><li><b>Pick a brand palette</b> — 2 main colours and 1 accent. Use them everywhere.</li><li><b>Limit fonts</b> — one for headlines, one for body.</li><li><b>Use templates</b> — a repeatable layout makes your feed instantly recognisable.</li><li><b>One message per post</b> — if it needs a paragraph, make it a carousel.</li><li><b>Keep text readable</b> — large type, strong contrast, safe margins.</li><li><b>Mix content</b> — educational, promotional and festival posts.</li><li><b>Plan monthly</b> — a content calendar saves hours and stress.</li></ul>
 <p>Need a done-for-you feed? Our <a href="services.html#social">social media design service</a> covers posts, carousels, stories and campaign creatives.</p>`
   },
   {
-    slug: 'logo-and-brand-identity', title: 'Why your business needs more than just a logo', cat: 'Branding', date: '2026-09-30', read: 4, icon: '✒️', grad: 'linear-gradient(135deg,#1e3a8a,#10b981)',
+    slug: 'logo-and-brand-identity', imgId: '1626785774573-4b799315345d', title: 'Why your business needs more than just a logo', cat: 'Branding', date: '2026-09-30', read: 4, icon: '✒️', grad: 'linear-gradient(135deg,#1e3a8a,#10b981)',
     excerpt: 'A logo is the start, not the finish. What a complete brand identity includes — and why it builds trust.',
     body: `<p>Customers judge you in seconds. A consistent identity tells them you are reliable before you say a word.</p>
 <h2>What a brand identity includes</h2><ul><li>Logo system — full, symbol and white versions</li><li>Colour palette and typography</li><li>Stationery — letterhead, cards, invoices</li><li>Company profile or brochure</li><li>Social media and website styling</li></ul>
@@ -118,7 +118,7 @@ const POSTS = [
 <p>Browse our <a href="project.html?p=branding-and-print">branding &amp; print work</a> for examples.</p>`
   },
   {
-    slug: 'what-is-devops-for-startups', title: 'DevOps for startups: what it is and why you need it early', cat: 'DevOps', date: '2026-10-25', read: 5, icon: '🔁', grad: 'linear-gradient(135deg,#0f172a,#0a5cff)',
+    slug: 'what-is-devops-for-startups', imgId: '1558494949-ef010cbdcc31', title: 'DevOps for startups: what it is and why you need it early', cat: 'DevOps', date: '2026-10-25', read: 5, icon: '🔁', grad: 'linear-gradient(135deg,#0f172a,#0a5cff)',
     excerpt: 'DevOps is not just for big companies. Here is how CI/CD, cloud and monitoring save small teams time and money.',
     body: `<p>DevOps means building, testing and releasing software in an automated, repeatable way. Startups that adopt it early ship faster and sleep better.</p>
 <h2>1. CI/CD: stop deploying by hand</h2><p>Every code change is built and tested automatically. If tests pass, it deploys. No more "it worked on my machine" or midnight FTP uploads.</p>
@@ -129,7 +129,7 @@ const POSTS = [
 <p>Need help? See our <a href="services.html#cloud">Cloud &amp; DevOps service</a> or <a href="contact.html">talk to us</a>.</p>`
   },
   {
-    slug: 'ai-for-small-business', title: 'Where AI can actually save time in a small business', cat: 'AI', date: '2026-09-22', read: 5, icon: '🤖', grad: 'linear-gradient(135deg,#111827,#475569)',
+    slug: 'ai-for-small-business', imgId: '1551288049-bebda4e38f71', title: 'Where AI can actually save time in a small business', cat: 'AI', date: '2026-09-22', read: 5, icon: '🤖', grad: 'linear-gradient(135deg,#111827,#475569)',
     excerpt: 'Skip the hype. Four practical places AI and automation pay off quickly for small teams.',
     body: `<p>AI is useful when it removes repetitive work. Start with these four areas:</p>
 <h2>1. Customer support</h2><p>A chatbot grounded in your own documents can answer the common questions 24/7 and hand over to a human when needed.</p>
@@ -139,3 +139,7 @@ const POSTS = [
 <p>Start with one process, measure the time saved, then expand. Curious what is possible for you? <a href="contact.html">Let's talk</a>.</p>`
   }
 ];
+
+// Photos: Unsplash (free to use). Gradient + icon is the fallback if an image fails.
+const IMGURL = (id, w = 900) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`;
+POSTS.forEach(p => { p.img = IMGURL(p.imgId); p.imgLarge = IMGURL(p.imgId, 1600); });
