@@ -21,7 +21,7 @@ document.getElementById('site-footer').outerHTML = `
     </div>
     <div><h4>Company</h4><a href="about.html">About us</a><a href="portfolio.html">Portfolio</a><a href="blog.html">Blog</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
     <div><h4>Services</h4><a href="services.html#web">Web Development</a><a href="services.html#mobile">Mobile Apps</a><a href="services.html#ai">AI &amp; Automation</a><a href="services.html#cloud">Cloud &amp; DevOps</a><a href="services.html#design">UI / UX Design</a><a href="services.html#social">Social Media</a><a href="services.html#graphics">Graphics &amp; Branding</a></div>
-    <div><h4>Get in touch</h4><a href="mailto:hello@afterlayoff.com">hello@afterlayoff.com</a><span>Remote — working worldwide</span><span>Mon–Sat, 10am–7pm IST</span></div>
+    <div><h4>Get in touch</h4><a href="mailto:contact@afterlayoff.in">contact@afterlayoff.in</a><span>Remote — working worldwide</span><span>Mon–Sat, 10am–7pm IST</span></div>
   </div>
   <div class="wrap foot-bottom"><small>© <span id="yr"></span> After Layoff. All rights reserved.</small><small><a href="privacy.html">Privacy</a> · <a href="#">Terms</a></small></div>
 </footer>`;
@@ -62,12 +62,40 @@ window.projectCard = p => `
     <div class="pbody"><h3>${p.title}</h3><p>${p.tag}</p><span class="link">View case study →</span></div>
   </a>`;
 
-// ---------- contact form -> opens email client (no backend yet) ----------
+// ---------- contact form -> emailed to contact@afterlayoff.in via FormSubmit (no server needed) ----------
+const MAIL_TO = 'contact@afterlayoff.in';
 const form = document.getElementById('form');
-if (form) form.addEventListener('submit', e => {
+if (form) form.addEventListener('submit', async e => {
   e.preventDefault();
+  const note = document.getElementById('note'), btn = form.querySelector('button[type=submit]');
   const f = new FormData(form);
-  const body = `Name: ${f.get('name')}\nEmail: ${f.get('email')}\nNeed: ${f.get('type')}\nBudget: ${f.get('budget')}\n\n${f.get('msg')}`;
-  location.href = `mailto:hello@afterlayoff.com?subject=${encodeURIComponent('New project enquiry — ' + f.get('name'))}&body=${encodeURIComponent(body)}`;
-  document.getElementById('note').textContent = 'Opening your email app…';
+  if (f.get('_honey')) return;                       // spam trap: bots fill this hidden field
+  note.style.color = ''; note.textContent = 'Sending…'; btn.disabled = true;
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${MAIL_TO}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: `New enquiry from ${f.get('name')} — After Layoff website`,
+        _template: 'table', _captcha: 'false',
+        Name: f.get('name'), Email: f.get('email'), _replyto: f.get('email'),
+        Service: f.get('type'), Budget: f.get('budget'), Message: f.get('msg')
+      })
+    });
+    const data = await res.json();
+    if (!res.ok || String(data.success) === 'false') throw new Error(data.message || 'failed');
+    form.reset();
+    note.textContent = '✓ Thank you! Your message has been sent. We will reply within 24 hours.';
+  } catch (err) {
+    // fallback: open the visitor's email app with the message pre-filled
+    const body = `Name: ${f.get('name')}
+Email: ${f.get('email')}
+Need: ${f.get('type')}
+Budget: ${f.get('budget')}
+
+${f.get('msg')}`;
+    note.style.color = '#b45309';
+    note.textContent = 'Could not send automatically — opening your email app instead.';
+    location.href = `mailto:${MAIL_TO}?subject=${encodeURIComponent('New project enquiry — ' + f.get('name'))}&body=${encodeURIComponent(body)}`;
+  } finally { btn.disabled = false; }
 });
