@@ -62,8 +62,11 @@ window.projectCard = p => `
     <div class="pbody"><h3>${p.title}</h3><p>${p.tag}</p><span class="link">View case study →</span></div>
   </a>`;
 
-// ---------- contact form -> emailed to contact@afterlayoff.in via FormSubmit (no server needed) ----------
+// ---------- contact form -> emailed to contact@afterlayoff.in (no server needed) ----------
+// Preferred: Web3Forms (free key sent to contact@afterlayoff.in via https://web3forms.com). Paste it below.
+// Until a key is set, FormSubmit is used as a fallback; if both fail, the visitor's email app opens.
 const MAIL_TO = 'contact@afterlayoff.in';
+const WEB3FORMS_KEY = '';
 const form = document.getElementById('form');
 if (form) form.addEventListener('submit', async e => {
   e.preventDefault();
@@ -71,15 +74,19 @@ if (form) form.addEventListener('submit', async e => {
   const f = new FormData(form);
   if (f.get('_honey')) return;                       // spam trap: bots fill this hidden field
   note.style.color = ''; note.textContent = 'Sending…'; btn.disabled = true;
+  const subject = `New enquiry from ${f.get('name')} — After Layoff website`;
+  const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 15000);
   try {
-    const res = await fetch(`https://formsubmit.co/ajax/${MAIL_TO}`, {
-      method: 'POST',
+    const useW3F = !!WEB3FORMS_KEY;
+    const res = await fetch(useW3F ? 'https://api.web3forms.com/submit' : `https://formsubmit.co/ajax/${MAIL_TO}`, {
+      method: 'POST', signal: ctl.signal,
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        _subject: `New enquiry from ${f.get('name')} — After Layoff website`,
-        _template: 'table', _captcha: 'false',
-        Name: f.get('name'), Email: f.get('email'), _replyto: f.get('email'),
-        Service: f.get('type'), Budget: f.get('budget'), Message: f.get('msg')
+      body: JSON.stringify(useW3F ? {
+        access_key: WEB3FORMS_KEY, subject, from_name: 'After Layoff Website',
+        name: f.get('name'), email: f.get('email'), service: f.get('type'), budget: f.get('budget'), message: f.get('msg')
+      } : {
+        _subject: subject, _template: 'table', _captcha: 'false', _replyto: f.get('email'),
+        Name: f.get('name'), Email: f.get('email'), Service: f.get('type'), Budget: f.get('budget'), Message: f.get('msg')
       })
     });
     const data = await res.json();
@@ -87,7 +94,6 @@ if (form) form.addEventListener('submit', async e => {
     form.reset();
     note.textContent = '✓ Thank you! Your message has been sent. We will reply within 24 hours.';
   } catch (err) {
-    // fallback: open the visitor's email app with the message pre-filled
     const body = `Name: ${f.get('name')}
 Email: ${f.get('email')}
 Need: ${f.get('type')}
@@ -96,6 +102,6 @@ Budget: ${f.get('budget')}
 ${f.get('msg')}`;
     note.style.color = '#b45309';
     note.textContent = 'Could not send automatically — opening your email app instead.';
-    location.href = `mailto:${MAIL_TO}?subject=${encodeURIComponent('New project enquiry — ' + f.get('name'))}&body=${encodeURIComponent(body)}`;
-  } finally { btn.disabled = false; }
+    location.href = `mailto:${MAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  } finally { clearTimeout(timer); btn.disabled = false; }
 });
