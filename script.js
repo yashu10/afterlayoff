@@ -3,19 +3,7 @@ const PAGES = [['index.html', 'Home'], ['about.html', 'About'], ['services.html'
 const here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
 const active = here === 'project.html' ? 'portfolio.html' : here === 'post.html' ? 'blog.html' : here;
 
-document.getElementById('site-header').outerHTML = `
-<div class="progress" id="progress"></div>
-<header class="nav" id="nav">
-  <a href="index.html" class="brand" aria-label="After Layoff home">
-    <span class="mark" style="--s:.09"></span>
-    <span class="brand-text">After <b>Layoff</b></span>
-  </a>
-  <nav class="links" id="links">
-    ${PAGES.map(([h, t]) => `<a href="${h}" class="${h === active ? 'on' : ''}">${t}</a>`).join('')}
-    <a href="contact.html" class="btn small">Contact us</a>
-  </nav>
-  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
-</header>`;
+
 
 document.getElementById('site-footer').outerHTML = `
 <section class="cta-band">
@@ -41,9 +29,6 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
 // ---------- progress + sticky nav ----------
 const nav = document.getElementById('nav'), bar = document.getElementById('progress');
-// reveal the header only once web fonts are ready, so it never flashes a fallback font
-const showNav = () => nav.classList.add('ready');
-Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]).then(showNav);
 function onScroll() {
   nav.classList.toggle('scrolled', scrollY > 30);
   bar.style.width = (scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) * 100) + '%';

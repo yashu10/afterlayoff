@@ -10,7 +10,18 @@
 <link rel="stylesheet" href="pages.css">
 </head>
 <body>
-<div id="site-header"></div>
+<div class="progress" id="progress"></div>
+<header class="nav" id="nav">
+  <a href="index.html" class="brand" aria-label="After Layoff home">
+    <span class="mark" style="--s:.09"></span>
+    <span class="brand-text">After <b>Layoff</b></span>
+  </a>
+  <nav class="links" id="links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="blog.html" class="on">Blog</a><a href="careers.html">Careers</a>
+    <a href="contact.html" class="btn small">Contact us</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+</header>
 <main id="main"></main>
 <div id="site-footer"></div>
 <script src="blog.js"></script>
