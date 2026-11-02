@@ -188,3 +188,11 @@
 .nav,.brand-text,.links,.btn.small{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
 .nav{opacity:1}
 .brand-text{font-weight:700;letter-spacing:-.01em}
+
+/* ---- header flicker fixes ---- */
+.nav,.nav.scrolled{transition:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.nav{transform:translateZ(0);will-change:transform;contain:layout paint}
+.nav.scrolled{background:rgba(255,255,255,.97)}
+.nav:has(~ #main .case-hero){background:rgba(255,255,255,.97)}
+.links a,.btn.small{transition:color .2s,transform .2s}
+.mark{image-rendering:auto}
