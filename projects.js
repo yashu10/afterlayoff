@@ -2,7 +2,7 @@
 // real:true  -> real work (images hosted on yashu10.github.io/yashpatel)
 // real:false -> concept case study (clearly labelled on the site)
 const IMG = 'https://yashu10.github.io/yashpatel/assets/img/';
-const PROJECTS = [
+const ALL_PROJECTS = [
   {
     real: true, slug: 'prage', title: 'PRAGE — EV Bike Rental App', cat: 'Mobile App', icon: '🛵', img: IMG + 'prage.webp', grad: 'linear-gradient(135deg,#0a2a7a,#0a5cff)',
     tag: 'A mobile app for renting electric bikes — from finding a hub to payment and ride tracking.',
@@ -26,7 +26,7 @@ const PROJECTS = [
     next: 'Test the AI suggestions with real customers; add reminders and rebooking.'
   },
   {
-    real: true, slug: 'okomall', title: 'OKOMALL — Salon Discovery & Booking', cat: 'Web App', icon: '💇', img: IMG + 'okomall.webp', grad: 'linear-gradient(135deg,#0ea5e9,#22d3ee)',
+    hidden: true, real: true, slug: 'okomall', title: 'OKOMALL — Salon Discovery & Booking', cat: 'Web App', icon: '💇', img: IMG + 'okomall.webp', grad: 'linear-gradient(135deg,#0ea5e9,#22d3ee)',
     tag: 'A responsive platform to find salons, compare services and book in four steps.',
     meta: [['Type', 'UX case study · Web app'], ['Role', 'UI/UX Designer'], ['Platform', 'Responsive web'], ['Tools', 'Figma']],
     challenge: 'Booking a salon still means calls, DMs and guesswork. Prices are unclear, availability is unknown and there is no single place to track appointments.',
@@ -159,3 +159,6 @@ const PROJECTS = [
     outcome: 'Target: repeatable one-click deployments, fewer outages and lower, more predictable cloud bills.'
   }
 ];
+
+// Projects with hidden:true are kept here but not shown on the site (remove the flag to show again).
+const PROJECTS = ALL_PROJECTS.filter(p => !p.hidden);
