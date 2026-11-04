@@ -185,3 +185,34 @@ export const ALL_PROJECTS: Project[] = [
 
 export const PROJECTS = ALL_PROJECTS.filter((p) => !p.hidden);
 export const getProject = (slug: string) => PROJECTS.find((p) => p.slug === slug);
+
+// ---- screens shown in each case study (hosted on the founder's portfolio site) ----
+export type ScreenKind = "phone" | "wide" | "masonry";
+const SHOT_BASE = "https://yashu10.github.io/yashpatel/assets/img/projects/";
+const SHOTS: Record<string, { kind: ScreenKind; files: string[] }> = {
+  prage: { kind: "phone", files: ["prage/1-splash", "prage/2-intro", "prage/3-login", "prage/4-home", "prage/5-hubs", "prage/6-vehicle", "prage/7-payment", "prage/8-confirmed"] },
+  atoma: { kind: "phone", files: ["atoma/1-splash", "atoma/2-home", "atoma/3-service", "atoma/4-booking", "atoma/5-ai", "atoma/6-cart", "atoma/7-thanks"] },
+  okomall: { kind: "wide", files: ["okomall/1-search", "okomall/2-step1", "okomall/3-step2", "okomall/4-step3", "okomall/5-step4", "okomall/6-appointments"] },
+  teamsync: { kind: "wide", files: ["teamsync/1-dashboard", "teamsync/2-tasks", "teamsync/3-calendar"] },
+  "warehouse-asset-management": { kind: "phone", files: ["basf/1-login", "basf/2-dashboard", "basf/3-assets", "basf/4-scan-tag", "basf/5-bulk-scan", "basf/6-backup"] },
+  "smart-hoist-system": { kind: "phone", files: ["smart-hoist/1-login", "smart-hoist/2-dashboard", "smart-hoist/3-live-hoist", "smart-hoist/4-alerts", "smart-hoist/5-alert-details", "smart-hoist/6-reports", "smart-hoist/7-schedule", "smart-hoist/8-profile"] },
+  innerpeace: { kind: "phone", files: ["innerpeace/1-splash", "innerpeace/2-intro", "innerpeace/3-statement", "innerpeace/4-plan", "innerpeace/5-home", "innerpeace/6-mood", "innerpeace/7-session", "innerpeace/8-progress"] },
+  "darshan-dye-chem": { kind: "wide", files: ["darshan-dye-chem/1-home-desktop", "darshan-dye-chem/2-about", "darshan-dye-chem/3-products", "darshan-dye-chem/4-contact", "darshan-dye-chem/5-home-mobile", "darshan-dye-chem/6-design-system"] },
+  "web-design": { kind: "wide", files: ["web-design/1-industrial", "web-design/2-real-estate", "web-design/3-landing-pages"] },
+  "branding-and-print": { kind: "wide", files: ["branding/1-projexel", "branding/2-ecotherm"] },
+  "social-media-design": { kind: "masonry", files: ["social-media/01-dental-care", "social-media/02-dhvani-fusion-art", "social-media/03-liquor-express", "social-media/04-venstor", "social-media/05-waff", "social-media/06-alpha-coder", "social-media/07-sunseta", "social-media/08-perfect", "social-media/09-atlance", "social-media/10-knowledge-sharing", "social-media/11-festival-posts"] },
+};
+const CAPTION_FIX: Record<string, string> = { ai: "AI assistant", venstor: "VeNstor", waff: "WAFF", basf: "Warehouse" };
+
+export function screensFor(slug: string): { kind: ScreenKind; items: { src: string; caption: string }[] } | null {
+  const s = SHOTS[slug];
+  if (!s) return null;
+  return {
+    kind: s.kind,
+    items: s.files.map((f) => {
+      const name = f.split("/")[1].replace(/^\d+-/, "");
+      const caption = CAPTION_FIX[name] ?? name.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+      return { src: `${SHOT_BASE}${f}.webp`, caption };
+    }),
+  };
+}

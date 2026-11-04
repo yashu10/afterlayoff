@@ -420,3 +420,82 @@ h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:700;margin-bottom:16px}
 /* typewriter slot: fixed width so the hero heading and the logo card stay still while the word changes */
 .type-slot{display:inline-block;min-width:4.3em;text-align:left;white-space:nowrap;vertical-align:bottom}
 .hero-grid>*{min-width:0}
+
+/* ================= case study redesign ================= */
+.case-hero{padding:140px 0 90px;position:relative;overflow:hidden}
+.case-hero::after{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%);pointer-events:none}
+.cs-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.cs-chips span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);padding:7px 15px;border-radius:999px;font-size:.84rem;font-weight:600}
+.cs-bigicon{font-size:9rem;text-align:center;filter:drop-shadow(0 30px 40px rgba(0,0,0,.4))}
+.cs-intro{margin-top:-46px;position:relative;z-index:2;padding-top:0}
+.cs-glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 30px 60px -34px rgba(10,60,180,.45);margin-bottom:34px}
+.cs-fact{padding:6px 14px;border-left:3px solid var(--blue)}
+.cs-fact span{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.cs-fact b{font-family:var(--font-grotesk),system-ui,sans-serif;font-size:1.02rem;line-height:1.3}
+.cs-duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cs-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:34px;transition:.3s}
+.cs-card:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(10,92,255,.5)}
+.cs-card h2{font-size:1.5rem;margin:14px 0 10px}
+.cs-card p{color:var(--muted);font-size:1.06rem}
+.cs-tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 13px;border-radius:999px;background:var(--soft);color:var(--blue)}
+.cs-tag.red{background:#fff0f0;color:#d63a3a}.cs-tag.blue{background:#eaf1ff;color:var(--blue)}.cs-tag.green{background:#e8f8ef;color:#15803d}
+.cs-cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cs-mini{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;position:relative;overflow:hidden;transition:.3s}
+.cs-mini:hover{transform:translateY(-6px);box-shadow:0 26px 44px -28px rgba(10,92,255,.5)}
+.cs-mini i{position:absolute;right:18px;top:6px;font-style:normal;font-family:var(--font-grotesk),system-ui,sans-serif;font-weight:700;font-size:3.6rem;color:#e6efff;line-height:1}
+.cs-mini h3{font-size:1.2rem;margin-bottom:8px;position:relative}
+.cs-mini p{color:var(--muted);font-size:.97rem;position:relative}
+.cs-decisions{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cs-dec{background:linear-gradient(160deg,#fff,#f3f7ff);border:1px solid var(--line);border-radius:24px;padding:30px 26px;transition:.3s}
+.cs-dec:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(10,92,255,.55);border-color:#bcd2ff}
+.cs-dec .num{width:46px;height:46px;border-radius:14px;background:var(--grad);color:#fff;display:grid;place-items:center;font-family:var(--font-grotesk),system-ui,sans-serif;font-weight:700;margin:0 0 18px;border:0}
+.cs-dec h3{font-size:1.2rem;margin-bottom:8px}
+.cs-dec p{color:var(--muted);font-size:.97rem}
+
+/* screens */
+.cs-screens .head h2{color:#fff}.cs-screens .head p{color:#9fb0cf}
+.cs-phones{display:flex;gap:30px;overflow-x:auto;padding:14px max(24px,calc((100vw - 1180px)/2 + 24px)) 30px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:#2c4a8a transparent}
+.cs-phone{flex:0 0 270px;scroll-snap-align:center;margin:0;text-align:center}
+.cs-phone .frame{height:560px;border-radius:38px;border:9px solid #1a2438;background:#0b1220;overflow-y:auto;overflow-x:hidden;box-shadow:0 36px 60px -26px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08);scrollbar-width:none;transition:.35s}
+.cs-phone .frame::-webkit-scrollbar{display:none}
+.cs-phone:hover .frame{transform:translateY(-8px);box-shadow:0 46px 70px -26px rgba(26,115,255,.55),0 0 0 1px rgba(46,180,255,.4)}
+.cs-phone img{width:100%;display:block}
+.cs-screens figcaption{margin-top:14px;font-size:.9rem;font-weight:600;color:#aebbd4}
+.cs-wide{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.cs-win{margin:0;background:#101a2e;border:1px solid rgba(255,255,255,.1);border-radius:18px;overflow:hidden}
+.cs-win .bar{display:flex;gap:7px;padding:12px 16px;background:#16223b}
+.cs-win .bar i{width:10px;height:10px;border-radius:50%;background:#3b4b6b}
+.cs-win .bar i:nth-child(1){background:#ff5f57}.cs-win .bar i:nth-child(2){background:#febc2e}.cs-win .bar i:nth-child(3){background:#28c840}
+.cs-win .body{height:400px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2c4a8a transparent}
+.cs-win img{width:100%;display:block}
+.cs-win figcaption{padding:12px 16px;margin:0;text-align:left}
+.cs-masonry{columns:3 280px;column-gap:20px}
+.cs-masonry figure{break-inside:avoid;margin:0 0 20px;background:#101a2e;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden}
+.cs-masonry img{width:100%;display:block}
+.cs-masonry figcaption{padding:10px 14px;margin:0;font-size:.82rem}
+
+/* outcome */
+.cs-outcome{display:grid;grid-template-columns:1.4fr 1fr;gap:26px;background:linear-gradient(135deg,#0a2a7a,#0a5cff 60%,#00a3ff);border-radius:30px;padding:44px;color:#fff;box-shadow:0 40px 70px -40px rgba(10,60,180,.8)}
+.cs-outcome .cs-tag{background:rgba(255,255,255,.18);color:#fff}
+.cs-outcome .big{font-family:var(--font-grotesk),system-ui,sans-serif;font-size:1.5rem;line-height:1.35;margin-top:16px;font-weight:600}
+.cs-outcome .nextbox{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:24px;align-self:start}
+.cs-outcome .nextbox p{margin-top:12px;opacity:.95}
+.cs-actions{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cs-pn{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cs-pn a{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 26px;transition:.3s;display:block}
+.cs-pn a:hover{border-color:var(--blue);transform:translateY(-4px);box-shadow:0 24px 40px -26px rgba(10,92,255,.55)}
+.cs-pn small{display:block;color:var(--muted);font-weight:600;margin-bottom:4px}
+.cs-pn b{font-family:var(--font-grotesk),system-ui,sans-serif;font-size:1.2rem}
+.cs-pn a:last-child{text-align:right}
+
+@media(max-width:960px){
+  .cs-duo,.cs-cards3,.cs-decisions,.cs-wide,.cs-outcome,.cs-pn{grid-template-columns:1fr}
+  .cs-pn a:last-child{text-align:left}
+  .case-hero{padding:120px 0 80px}
+  .cs-bigicon{font-size:6rem}
+}
+@media(max-width:600px){
+  .cs-phone{flex-basis:240px}.cs-phone .frame{height:500px}
+  .cs-outcome{padding:28px}.cs-outcome .big{font-size:1.2rem}
+  .cs-card{padding:24px}
+}
