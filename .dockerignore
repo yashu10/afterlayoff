@@ -1,0 +1,9 @@
+node_modules
+.next
+dist*
+out
+_legacy
+hostinger-upload
+.git
+.github
+*.log
