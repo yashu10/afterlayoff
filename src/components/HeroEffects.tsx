@@ -20,7 +20,12 @@ export function Typewriter() {
     t = setTimeout(tick, 1800);
     return () => clearTimeout(t);
   }, []);
-  return <span className="type" ref={ref}>next.</span>;
+  // The slot has a fixed width (widest word), so the heading never re-wraps and the logo beside it never moves.
+  return (
+    <span className="type-slot">
+      <span className="type" ref={ref}>next.</span>
+    </span>
+  );
 }
 
 /** Rising-lines canvas background (the "arrow up" motif). */

@@ -416,3 +416,7 @@ h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:700;margin-bottom:16px}
 
 @media(max-width:960px){.svc-grid{grid-template-columns:1fr}.side-card{position:static}.mini-steps{grid-template-columns:1fr 1fr}.related{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.mini-steps,.related{grid-template-columns:1fr}}
+
+/* typewriter slot: fixed width so the hero heading and the logo card stay still while the word changes */
+.type-slot{display:inline-block;min-width:4.3em;text-align:left;white-space:nowrap;vertical-align:bottom}
+.hero-grid>*{min-width:0}
