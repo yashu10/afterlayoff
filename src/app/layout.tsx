@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import RevealInit from "@/components/RevealInit";
+import Protect from "@/components/Protect";
 import { BASE_PATH, SITE, SITE_URL } from "@/data/site";
 import { siteGraph } from "@/lib/seo";
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <RevealInit />
+        <Protect />
         <JsonLd data={siteGraph()} />
       </body>
     </html>
