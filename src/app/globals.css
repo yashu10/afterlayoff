@@ -499,3 +499,6 @@ h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:700;margin-bottom:16px}
   .cs-outcome{padding:28px}.cs-outcome .big{font-size:1.2rem}
   .cs-card{padding:24px}
 }
+
+/* hero image: keep the real aspect ratio (the width/height attributes were stretching it) */
+.case-img{height:auto;max-height:520px;object-fit:contain;width:100%}

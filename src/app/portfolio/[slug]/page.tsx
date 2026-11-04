@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { PROJECTS, getProject, type Pair } from "@/data/projects";
+import { asset } from "@/lib/paths";
+import { abs } from "@/data/site";
 import { buildMetadata, creativeWorkLd } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -61,7 +63,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             )}
           </div>
           {p.img ? (
-            <img className="case-img" src={p.img} alt={`${p.title} — ${p.cat} project by After Layoff`} width={900} height={560} fetchPriority="high" />
+            <img className="case-img" src={asset(p.img)} alt={`${p.title} — ${p.cat} project by After Layoff`} width={808} height={632} fetchPriority="high" />
           ) : (
             <div className="cs-bigicon" aria-hidden="true">{p.icon}</div>
           )}
@@ -139,7 +141,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      <JsonLd data={creativeWorkLd(p)} />
+      <JsonLd data={creativeWorkLd({ ...p, image: p.img ? abs(p.img) : undefined })} />
     </>
   );
 }

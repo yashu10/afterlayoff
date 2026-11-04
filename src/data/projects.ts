@@ -27,7 +27,7 @@ export type Project = {
 const IMG = 'https://yashu10.github.io/yashpatel/assets/img/';
 export const ALL_PROJECTS: Project[] = [
   {
-    real: true, slug: 'prage', title: 'PRAGE — EV Bike Rental App', cat: 'Mobile App', icon: '🛵', img: IMG + 'prage.webp', grad: 'linear-gradient(135deg,#0a2a7a,#0a5cff)',
+    real: true, slug: 'prage', title: 'PRAGE — EV Bike Rental App', cat: 'Mobile App', icon: '🛵', img: '/images/projects/prage.jpg', grad: 'linear-gradient(135deg,#0a2a7a,#0a5cff)',
     tag: 'A mobile app for renting electric bikes — from finding a hub to payment and ride tracking.',
     meta: [['Type', 'UX case study · Mobile app'], ['Role', 'UI/UX Designer'], ['Platform', 'iOS / Android'], ['Tools', 'Figma']],
     challenge: 'Renting an electric bike should feel as simple as unlocking a phone. In practice, riders face unclear availability, repeated paperwork and uncertainty about battery, range and charges.',
@@ -38,7 +38,7 @@ export const ALL_PROJECTS: Project[] = [
     next: 'Usability-test the verification and trip start/end flows with real riders.'
   },
   {
-    real: true, slug: 'atoma', title: 'Atoma — Home Beauty & Salon App', cat: 'Mobile App', icon: '💅', img: IMG + 'atoma.webp', grad: 'linear-gradient(135deg,#1e3a8a,#00a3ff)',
+    real: true, slug: 'atoma', title: 'Atoma — Home Beauty & Salon App', cat: 'Mobile App', icon: '💅', img: '/images/projects/atoma.jpg', grad: 'linear-gradient(135deg,#1e3a8a,#00a3ff)',
     tag: 'At-home beauty and salon booking with an AI assistant and a simple booking flow.',
     meta: [['Type', 'UX case study · Mobile app'], ['Role', 'UI/UX Designer'], ['Platform', 'iOS'], ['Tools', 'Figma']],
     challenge: 'Booking beauty services at home usually means calls, messages and guesswork: what is included, how long it takes, what it costs, and which service fits your skin or hair.',
@@ -60,7 +60,7 @@ export const ALL_PROJECTS: Project[] = [
     next: 'Usability-test booking, design the salon-owner dashboard, add payment and reminders.'
   },
   {
-    real: true, slug: 'teamsync', title: 'TeamSync — Project Management', cat: 'Dashboard', icon: '📋', img: IMG + 'teamsync.webp', grad: 'linear-gradient(135deg,#6366f1,#0a5cff)',
+    real: true, slug: 'teamsync', title: 'TeamSync — Project Management', cat: 'Dashboard', icon: '📋', img: '/images/projects/teamsync.jpg', grad: 'linear-gradient(135deg,#6366f1,#0a5cff)',
     tag: 'One workspace for tasks, projects, team chat, files and calendar.',
     meta: [['Type', 'UX case study · Web dashboard'], ['Role', 'UI/UX Designer'], ['Platform', 'Web app (desktop)'], ['Tools', 'Figma']],
     challenge: 'Task lists live in one app, chat in another, files in a third and deadlines in a calendar nobody checks. Managers cannot see progress at a glance.',
@@ -71,7 +71,7 @@ export const ALL_PROJECTS: Project[] = [
     next: 'Usability-test with real teams, add dark mode and design Projects, Files and Planning screens.'
   },
   {
-    real: true, slug: 'warehouse-asset-management', title: 'Warehouse Asset Management', cat: 'Mobile App', icon: '📦', img: IMG + 'basf-warehouse.webp', grad: 'linear-gradient(135deg,#0891b2,#0a2a7a)',
+    real: true, slug: 'warehouse-asset-management', title: 'Warehouse Asset Management', cat: 'Mobile App', icon: '📦', img: '/images/projects/warehouse-asset-management.jpg', grad: 'linear-gradient(135deg,#0891b2,#0a2a7a)',
     tag: 'A mobile app to add, scan, verify and back up warehouse assets.',
     meta: [['Type', 'UX case study · Mobile app'], ['Role', 'UI/UX Designer'], ['Platform', 'Mobile app'], ['Tools', 'Figma']],
     challenge: 'In a large warehouse, assets are logged on paper or spreadsheets. Locations are inconsistent, checks take long, and mismatches are found too late.',
@@ -82,7 +82,7 @@ export const ALL_PROJECTS: Project[] = [
     next: 'Test bulk scanning with operators on a real floor, add offline support and a tablet layout.'
   },
   {
-    real: true, slug: 'smart-hoist-system', title: 'Smart Hoist System', cat: 'IoT', icon: '🏗️', img: IMG + 'smart-hoist.webp', grad: 'linear-gradient(135deg,#111827,#334155)',
+    real: true, slug: 'smart-hoist-system', title: 'Smart Hoist System', cat: 'IoT', icon: '🏗️', img: '/images/projects/smart-hoist-system.jpg', grad: 'linear-gradient(135deg,#111827,#334155)',
     tag: 'A dark-theme app for monitoring construction hoists in real time.',
     meta: [['Type', 'UX case study · Mobile app'], ['Role', 'UI/UX Designer'], ['Platform', 'Mobile app (dark theme)'], ['Tools', 'Figma']],
     challenge: 'Engineers need load, speed, power and fault status at once, but data sits in separate panels and reports, and alerts can be missed.',
@@ -93,7 +93,7 @@ export const ALL_PROJECTS: Project[] = [
     next: 'Test alert triage with site engineers; add push notifications and a control-room tablet view.'
   },
   {
-    real: true, slug: 'innerpeace', title: 'InnerPeace — Wellness App', cat: 'Mobile App', icon: '🧘', img: IMG + 'innerpeace.webp', grad: 'linear-gradient(135deg,#7c3aed,#38bdf8)',
+    real: true, slug: 'innerpeace', title: 'InnerPeace — Wellness App', cat: 'Mobile App', icon: '🧘', img: '/images/projects/innerpeace.jpg', grad: 'linear-gradient(135deg,#7c3aed,#38bdf8)',
     tag: 'A calm mental wellness app with mood check-ins and guided sessions.',
     meta: [['Type', 'UX case study · Mobile app'], ['Role', 'UI/UX Designer'], ['Platform', 'iOS'], ['Tools', 'Figma']],
     challenge: 'Stress is easy to feel and hard to understand. Many wellness apps start with a blank screen or a long list of content — overwhelming for someone already tired.',
@@ -104,7 +104,7 @@ export const ALL_PROJECTS: Project[] = [
     next: 'Interview real users, test onboarding length, add reminders and a profile screen.'
   },
   {
-    real: true, slug: 'darshan-dye-chem', title: 'Darshan Dye-Chem Website', cat: 'Website', icon: '🎨', img: IMG + 'darshan-dye-chem.webp', grad: 'linear-gradient(135deg,#78350f,#f59e0b)',
+    real: true, slug: 'darshan-dye-chem', title: 'Darshan Dye-Chem Website', cat: 'Website', icon: '🎨', img: '/images/projects/darshan-dye-chem.jpg', grad: 'linear-gradient(135deg,#78350f,#f59e0b)',
     tag: 'A live website for an Ahmedabad dye manufacturer — shade cards, dye tools and quotes.',
     meta: [['Type', 'Website design (live)'], ['Role', 'UI/UX Designer'], ['Platform', 'Desktop and mobile web'], ['Tools', 'Figma']],
     challenge: 'Dye buyers want proof before they ask for a quote: what the company makes, which shades exist, how reliable supply is and how to get a sample.',
@@ -114,21 +114,21 @@ export const ALL_PROJECTS: Project[] = [
     links: [['Visit live website', 'https://darshandyechem.com']]
   },
   {
-    real: true, slug: 'web-design', title: 'Web Design Collection', cat: 'Website', icon: '🖥️', img: IMG + 'web-design.webp', grad: 'linear-gradient(135deg,#0f172a,#0a5cff)',
+    real: true, slug: 'web-design', title: 'Web Design Collection', cat: 'Website', icon: '🖥️', img: '/images/projects/web-design.jpg', grad: 'linear-gradient(135deg,#0f172a,#0a5cff)',
     tag: 'Corporate, real estate and e-commerce websites and landing pages.',
     meta: [['Type', 'Web design'], ['Role', 'UI/UX Designer'], ['Platform', 'Desktop and mobile web'], ['Tools', 'Figma']],
     decisions: [['Industrial machinery website', 'A five-page corporate site (Home, Products, About, Blog, Contact) for a filling and capping machinery maker. Navy and red palette, product-led layout and a clear Get in Touch block.'], ['Real estate website', 'A premium apartment developer home page (client work). Warm copper and dark brown tones, hero search panel, stats, amenities, plans, testimonials and map.'], ['Landing pages', 'Skincare, e-commerce and education pages, each with a clear hero, focused sections and strong calls to action.']],
     outcome: 'Responsive layouts with clear hierarchy, strong calls to action and consistent visual systems for each industry.'
   },
   {
-    real: true, slug: 'branding-and-print', title: 'Branding & Print', cat: 'Branding', icon: '✒️', img: IMG + 'branding.webp', grad: 'linear-gradient(135deg,#1e3a8a,#10b981)',
+    real: true, slug: 'branding-and-print', title: 'Branding & Print', cat: 'Branding', icon: '✒️', img: '/images/projects/branding-and-print.jpg', grad: 'linear-gradient(135deg,#1e3a8a,#10b981)',
     tag: 'Logos, stationery, brochures and brand kits for engineering and cold-chain brands.',
     meta: [['Type', 'Brand identity & print'], ['Role', 'Designer'], ['Deliverables', 'Logo, stationery, brochure, website'], ['Tools', 'Figma · Illustrator · CorelDRAW']],
     decisions: [['Projexel Engineering', 'A complete brand kit for an EPC and industrial services company: logo system, mockups on safety vests, signage and uniforms, letterhead, company profile and website.'], ['EcoTherm Cooling Solutions', 'Logo, letterhead and a 16-page product brochure for cold rooms and freezing chambers — navy and green for technology and sustainability.']],
     outcome: 'Consistent identities across logo, stationery, print and web, designed to work on documents, signs, uniforms and screens.'
   },
   {
-    real: true, slug: 'social-media-design', title: 'Social Media Design', cat: 'Social Media', icon: '📲', img: IMG + 'social-media.webp', grad: 'linear-gradient(135deg,#db2777,#f59e0b)',
+    real: true, slug: 'social-media-design', title: 'Social Media Design', cat: 'Social Media', icon: '📲', img: '/images/projects/social-media-design.jpg', grad: 'linear-gradient(135deg,#db2777,#f59e0b)',
     tag: 'Posts, carousels and campaign creatives for 10+ brands.',
     meta: [['Type', 'Social media design'], ['Role', 'Designer'], ['Formats', 'Square, portrait and story'], ['Tools', 'Figma · Photoshop · Canva']],
     decisions: [['Brands served', 'Healthcare (Dental Care), technology, real estate, art, food & beverage, education and more — a consistent look per brand.'], ['Knowledge-sharing posts', 'Clear, educational carousels that make complex topics easy to scan.'], ['Festival & occasion posts', 'Greetings and campaign creatives in portrait format, ready to schedule.']],

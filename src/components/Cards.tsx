@@ -1,13 +1,13 @@
 import Link from "next/link";
 import type { Project } from "@/data/projects";
 import { unsplash, type Post } from "@/data/posts";
-import { fmtDate } from "@/lib/paths";
+import { asset, fmtDate } from "@/lib/paths";
 
 export function ProjectCard({ p, reveal = true }: { p: Project; reveal?: boolean }) {
   return (
     <Link className={`pcard${reveal ? " reveal" : ""}`} href={`/portfolio/${p.slug}/`}>
       <div className="pimg" style={{ background: p.grad }}>
-        {p.img ? <img src={p.img} alt={`${p.title} — ${p.cat} project by After Layoff`} width={900} height={560} loading="lazy" decoding="async" /> : <span aria-hidden="true">{p.icon}</span>}
+        {p.img ? <img src={asset(p.img)} alt={`${p.title} — ${p.cat} project by After Layoff`} width={808} height={632} loading="lazy" decoding="async" /> : <span aria-hidden="true">{p.icon}</span>}
         <em>
           {p.cat}
           {p.real ? "" : " · Concept"}
