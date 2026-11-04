@@ -4,11 +4,10 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 const WORDS = ["next.", "smarter.", "faster.", "bigger."];
 
-/** Typewriter. Server HTML contains the full word "next." so crawlers read "We build what's next." */
+/** Typewriter (text swap only, so it runs even with "reduce motion"). Server HTML contains the full word "next." so crawlers read "We build what's next." */
 export function Typewriter() {
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let w = 0, c = 0, del = false, t: ReturnType<typeof setTimeout>;
     const tick = () => {
       const word = WORDS[w];
@@ -29,7 +28,6 @@ export function HeroCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const cv = ref.current!, ctx = cv.getContext("2d")!;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let W = 0, H = 0, raf = 0;
     let lines: { x: number; y: number; len: number; v: number }[] = [];
     const size = () => {
