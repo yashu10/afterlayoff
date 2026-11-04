@@ -7,3 +7,4 @@ _legacy
 .env*.local
 dist
 dist*
+hostinger-upload
