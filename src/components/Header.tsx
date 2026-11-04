@@ -23,11 +23,25 @@ export default function Header() {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  // mobile menu: close with Esc, and lock page scroll while it is open
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
     <>
       <div className="progress" style={{ width: `${progress}%` }} />
+      {open && <div className="menu-scrim" onClick={() => setOpen(false)} aria-hidden="true" />}
       <header className={`nav${scrolled ? " scrolled" : ""}`} id="nav">
         <Link href="/" className="brand" aria-label="After Layoff home">
           <span className="mark" style={{ ["--s" as string]: 0.09 }} aria-hidden="true" />
@@ -45,7 +59,7 @@ export default function Header() {
             Contact us
           </Link>
         </nav>
-        <button className="burger" aria-label="Menu" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+        <button className={`burger${open ? " is-open" : ""}`} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
           <span />
           <span />
         </button>

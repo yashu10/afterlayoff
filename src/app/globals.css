@@ -358,7 +358,8 @@ h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:700;margin-bottom:16px}
 
 /* ---- header flicker fixes ---- */
 .nav,.nav.scrolled{transition:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-.nav{transform:translateZ(0);will-change:transform;contain:layout paint}
+/* own paint layer on desktop only: on mobile a transformed/contained header would trap the fixed slide-in menu inside it */
+@media(min-width:961px){.nav{transform:translateZ(0);will-change:transform;contain:layout paint}}
 .nav.scrolled{background:rgba(255,255,255,.97)}
 .nav:has(~ #main .case-hero){background:rgba(255,255,255,.97)}
 .links a,.btn.small{transition:color .2s,transform .2s}
@@ -502,3 +503,26 @@ h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:700;margin-bottom:16px}
 
 /* hero image: keep the real aspect ratio (the width/height attributes were stretching it) */
 .case-img{height:auto;max-height:520px;object-fit:contain;width:100%}
+
+/* mobile menu: scrim behind the panel, burger stays above it so the menu can always be closed */
+.menu-scrim{position:fixed;inset:0;background:rgba(7,12,28,.45);z-index:45;animation:scrimIn .25s ease}
+@keyframes scrimIn{from{opacity:0}to{opacity:1}}
+@media(max-width:960px){
+  .nav .links{z-index:60}
+  .nav .burger{position:relative;z-index:70}
+  .burger.is-open span:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+  .burger.is-open span:nth-child(2){transform:translateY(-4.5px) rotate(-45deg)}
+  .burger span{transition:transform .25s}
+}
+
+/* very small phones (<=380px): keep everything inside the screen */
+html{overflow-x:clip}
+h1,h2,h3{overflow-wrap:break-word}
+@media(max-width:380px){
+  .stats{gap:12px}
+  .stat{padding:18px 14px;min-width:0}
+  .stat b{font-size:2.1rem}
+  .wrap{padding:0 18px}
+  .btn{padding:14px 22px}
+  .cta{gap:10px}
+}
