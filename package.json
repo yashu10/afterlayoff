@@ -2,12 +2,12 @@
   "name": "afterlayoff-website",
   "version": "1.0.0",
   "private": true,
-  "description": "After Layoff — IT company website (Next.js, static export)",
+  "description": "After Layoff \u2014 IT company website (Next.js, static export)",
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack && node scripts/postbuild.mjs",
     "start": "npx serve dist",
-    "lint": "tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "16.4.5",
@@ -19,5 +19,8 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

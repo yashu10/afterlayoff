@@ -1,45 +1,51 @@
 # After Layoff — website
 
-Next.js (App Router, TypeScript) static site for **After Layoff**, with SEO, AEO (answer engines) and GEO (generative engines) built in.
+Next.js 16 (App Router, TypeScript) static site for **After Layoff**, with SEO, AEO (answer engines) and GEO (generative engines) built in.
 
-## Run
+## Scripts
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run build      # static export -> dist/
+npm run dev         # http://localhost:3000   (webpack)
+npm run build       # static export -> dist/  (webpack, works on hosts without Turbopack bindings)
+npm run typecheck   # strict TypeScript check
 ```
+
+Requires Node >= 20.9. `NEXT_PUBLIC_*` variables are read at build time (see below).
 
 ## Where to edit things
 
 | What | File |
 |---|---|
-| Domain, email, hours, founders, nav | `src/data/site.ts` |
+| Domain, email, hours, founders, nav, social links (`sameAs`) | `src/data/site.ts` |
 | Services (each gets its own page + FAQs + schema) | `src/data/services.ts` |
-| Portfolio / case studies (`hidden: true` hides one) | `src/data/projects.ts` |
+| Portfolio / case studies (`hidden: true` hides one) | `src/data/projects.ts` (images in `public/images/projects/`) |
 | Blog posts (add an object to publish) | `src/data/posts.ts` |
 | Home / About / Contact FAQs | `src/data/faqs.ts` |
 | Privacy policy | `src/data/privacy.ts` |
 | Styles | `src/app/globals.css` |
+| Copy protection (select / copy / right-click) | `src/components/Protect.tsx` + end of `globals.css` |
 
-## SEO / AEO / GEO — what is included
+## SEO / AEO / GEO
 
-**SEO:** per-page title, description, canonical, Open Graph and Twitter cards; `sitemap.xml`; `robots.txt`; breadcrumbs; one `h1` per page; self-hosted fonts (no render-blocking requests); descriptive alt text; clean URLs; RSS feed (`/feed.xml`).
+- **SEO:** per-page title, description, canonical, Open Graph and Twitter cards; `sitemap.xml`; `robots.txt`; breadcrumbs; one `h1` per page; self-hosted fonts; alt text; RSS (`/feed.xml`).
+- **Structured data (JSON-LD):** Organization + ProfessionalService, WebSite, Person (founders), BreadcrumbList, Service, FAQPage, BlogPosting, CollectionPage, CreativeWork, AboutPage, ContactPage.
+- **AEO:** every service and article starts with an answer-first summary; question-style FAQs (visible and in FAQPage schema).
+- **GEO:** `/llms.txt` and `/llms-full.txt`; `robots.txt` explicitly allows search and AI crawlers; consistent entity data everywhere.
 
-**Structured data (JSON-LD):** Organization + ProfessionalService, WebSite, Person (founders), BreadcrumbList, Service, FAQPage, BlogPosting, CollectionPage, CreativeWork, AboutPage, ContactPage.
+## Hosting
 
-**AEO (answer engines):** every service and article starts with a concise "answer-first" summary; question-style FAQs with short direct answers (visible on the page and in FAQPage schema); `speakable` markup on article summaries.
+The site is a static export (`dist/`), so it runs anywhere.
 
-**GEO (generative engines):** `/llms.txt` and `/llms-full.txt` give AI assistants a clean map and the full text of the site; `robots.txt` explicitly allows search and AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, …); consistent entity data (name, founders, services, contact) across schema, `llms.txt` and the About page; dated, updated articles.
+| Host | How |
+|---|---|
+| **Hostinger (shared / Cloud)** | Upload the contents of `dist/` (built without a base path) to `public_html`. If you use hPanel's Node.js builder instead: Build command `npm run build`, **Output directory `dist`** (not `.next`). |
+| **Vercel** | Import the GitHub repo; it detects Next.js and deploys on every push to `main`. |
+| **GitHub Pages** | Settings → Pages → Source: **GitHub Actions**. `.github/workflows/deploy.yml` deploys on every push to `main` under `/afterlayoff` (set repo variable `CUSTOM_DOMAIN` to serve from a domain root). |
+| **Docker / VPS** | `docker build -t afterlayoff .` then `docker run -d -p 80:80 afterlayoff` (Node build stage + nginx). Not available on shared hosting. |
 
-Add real profile URLs (LinkedIn company page, Instagram, X, Google Business Profile…) to `SITE.sameAs` in `src/data/site.ts` — this strengthens the brand entity for both search and AI answers.
+Build-time variables: `NEXT_PUBLIC_SITE_URL` (default `https://afterlayoff.in`), `NEXT_PUBLIC_BASE_PATH` (only for sub-path hosting), `NEXT_PUBLIC_WEB3FORMS_KEY` (contact form key).
 
-## Hosting / deployment
+## Contact form
 
-The site is a static export (`dist/`), so it runs on GitHub Pages, Hostinger, Netlify, etc.
-
-- **GitHub Pages:** Settings → Pages → Source: **GitHub Actions**. `.github/workflows/deploy.yml` builds and deploys on every push to `main`.
-  - Served from `https://<user>.github.io/afterlayoff` → nothing else to set (base path `/afterlayoff` is applied).
-  - Custom domain (e.g. `afterlayoff.in`) → add a repository **variable** `CUSTOM_DOMAIN=afterlayoff.in`, add `public/CNAME` with the domain, and point DNS at GitHub Pages.
-- **Contact form:** set the repository variable `WEB3FORMS_KEY` (free key from https://web3forms.com, sent to contact@afterlayoff.in). Without it the form falls back to FormSubmit, then to the visitor's email app.
-- `NEXT_PUBLIC_SITE_URL` overrides the canonical domain (default `https://afterlayoff.in`).
+Enquiries are emailed to `contact@afterlayoff.in`: Web3Forms when `NEXT_PUBLIC_WEB3FORMS_KEY` is set (free key from https://web3forms.com), otherwise FormSubmit, otherwise the visitor's email app opens as a fallback.

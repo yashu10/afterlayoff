@@ -7,9 +7,9 @@ import type { Post } from "@/data/posts";
 
 function Filters({ cats, value, onChange }: { cats: string[]; value: string; onChange: (c: string) => void }) {
   return (
-    <div className="filters" role="tablist" aria-label="Filter by category">
+    <div className="filters" role="group" aria-label="Filter by category">
       {["All", ...cats].map((c) => (
-        <button key={c} role="tab" aria-selected={value === c} className={value === c ? "on" : ""} onClick={() => onChange(c)}>
+        <button key={c} type="button" aria-pressed={value === c} className={value === c ? "on" : ""} onClick={() => onChange(c)}>
           {c}
         </button>
       ))}
@@ -26,7 +26,7 @@ export function PortfolioGrid({ projects }: { projects: Project[] }) {
       <Filters cats={cats} value={cat} onChange={setCat} />
       <div className="pgrid">
         {projects.map((p) => (
-          <div key={p.slug} hidden={cat !== "All" && p.cat !== cat} style={{ display: cat !== "All" && p.cat !== cat ? "none" : "contents" }}>
+          <div key={p.slug} style={{ display: cat !== "All" && p.cat !== cat ? "none" : "contents" }}>
             <ProjectCard p={p} reveal={false} />
           </div>
         ))}

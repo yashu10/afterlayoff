@@ -313,4 +313,3 @@ export const POSTS: Post[] = [
 ];
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
-export const POST_CATEGORIES = [...new Set(POSTS.map((p) => p.cat))];

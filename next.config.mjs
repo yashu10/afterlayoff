@@ -15,6 +15,8 @@ const nextConfig = {
   images: { unoptimized: true },
   reactStrictMode: true,
   poweredByHeader: false,
+  // Next 16.4 writes an AGENTS.md (rules for AI coding agents) on `next dev`; not needed in this repo.
+  agentRules: false,
 };
 
 export default nextConfig;

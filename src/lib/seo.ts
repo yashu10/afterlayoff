@@ -26,11 +26,11 @@ export const clip = (t: string, max = 155) => {
 /** Per-page metadata: title, description, canonical, Open Graph and Twitter cards. */
 export function buildMetadata(m: MetaInput): Metadata {
   const url = abs(m.path);
-  m = { ...m, description: clip(m.description) };
+  const description = clip(m.description);
   const image = m.image ? (m.image.startsWith("http") ? m.image : abs(m.image)) : abs("/og-image.png");
   return {
     title: m.title,
-    description: m.description,
+    description,
     keywords: m.keywords,
     alternates: { canonical: url },
     robots: m.noindex ? { index: false, follow: false } : { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
@@ -40,11 +40,11 @@ export function buildMetadata(m: MetaInput): Metadata {
       siteName: SITE.name,
       locale: SITE.locale,
       title: m.title,
-      description: m.description,
+      description,
       images: [{ url: image, width: 1200, height: 630, alt: m.title }],
       ...(m.type === "article" ? { publishedTime: m.publishedTime, modifiedTime: m.modifiedTime, authors: [SITE.name] } : {}),
     },
-    twitter: { card: "summary_large_image", title: m.title, description: m.description, images: [image] },
+    twitter: { card: "summary_large_image", title: m.title, description, images: [image] },
   };
 }
 

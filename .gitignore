@@ -8,3 +8,4 @@ _legacy
 dist
 dist*
 hostinger-upload
+*.log
