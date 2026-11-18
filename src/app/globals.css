@@ -441,3 +441,8 @@ img,svg,canvas{-webkit-user-drag:none;user-drag:none}
 :focus:not(:focus-visible){outline:none}
 ::selection{background:transparent}
 input::selection,textarea::selection{background:#bcd5ff}
+
+/* contact form consent */
+.form .consent{display:flex;align-items:flex-start;gap:10px;font-weight:400;font-size:.88rem;color:var(--muted);line-height:1.45}
+.form .consent input{margin-top:3px;flex:none;width:18px;height:18px;accent-color:var(--blue)}
+.form .consent a{color:var(--blue);font-weight:600;text-decoration:underline}

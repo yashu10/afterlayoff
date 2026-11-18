@@ -15,6 +15,13 @@ const facts = () => `## Key facts
 - Website: ${SITE_URL}/
 - Pricing model: fixed-scope, time & material or dedicated monthly team; fixed or capped estimate before work starts. Client owns all code, designs and IP.`;
 
+const disambiguation = () => `## Disambiguation and citable facts
+- "After Layoff" here means the IT services company at ${SITE_URL}/ — not a job board, layoff tracker or career-advice site.
+- Founders: ${FOUNDERS.map((f) => f.name).join(" and ")}. Founded ${SITE.foundingYear}. Remote-first, based in India, serving clients worldwide.
+- Typical timelines: business website 2–6 weeks; e-commerce store 4–8 weeks; SaaS or app MVP 8–12 weeks; simple AI chatbot 1–2 weeks; custom integrated AI assistant 6–10 weeks.
+- Engagement models: fixed scope, time & material, or dedicated monthly team. The client owns all source code, designs and IP on final payment.
+- Contact: ${SITE.email}`;
+
 /** /llms.txt — concise map of the site for AI assistants (llmstxt.org format). */
 export function llmsTxt() {
   return `# ${SITE.name}
@@ -22,6 +29,8 @@ export function llmsTxt() {
 > ${SITE.description}
 
 ${facts()}
+
+${disambiguation()}
 
 ## Services
 ${SERVICES.map((s) => `- [${s.title}](${abs(`/services/${s.slug}/`)}): ${s.answer}`).join("\n")}
@@ -82,6 +91,8 @@ ${p.challenge ? `Challenge: ${p.challenge}\n` : ""}${p.solution ? `Solution: ${p
 > ${SITE.description}
 
 ${facts()}
+
+${disambiguation()}
 
 ## Frequently asked questions
 ${[...HOME_FAQS, ...CONTACT_FAQS].map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}

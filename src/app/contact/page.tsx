@@ -7,8 +7,8 @@ import { SITE } from "@/data/site";
 import { CONTACT_FAQS } from "@/data/faqs";
 import { buildMetadata, webPageLd } from "@/lib/seo";
 
-const DESC = "Tell us about your project. After Layoff replies within 24 hours with honest feedback, a free discovery call and a clear proposal.";
-export const metadata: Metadata = buildMetadata({ title: "Contact Us — Start a Project", description: DESC, path: "/contact/" });
+const DESC = "Tell us about your web, mobile, AI or cloud project. After Layoff replies within 24 hours with honest feedback, a free discovery call and a clear proposal.";
+export const metadata: Metadata = buildMetadata({ title: "Contact Us: Free Project Quote in 24 Hours", description: DESC, path: "/contact/" });
 
 export default function Contact() {
   return (
@@ -29,6 +29,12 @@ export default function Contact() {
           <div className="reveal">
             <div className="infocards">
               <div className="ic"><span aria-hidden="true">📧</span><div><b>Email</b><a href={`mailto:${SITE.email}`}>{SITE.email}</a></div></div>
+              {SITE.whatsapp && (
+                <div className="ic"><span aria-hidden="true">💬</span><div><b>WhatsApp</b><a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener">Chat with us</a></div></div>
+              )}
+              {SITE.phone && (
+                <div className="ic"><span aria-hidden="true">📞</span><div><b>Phone</b><a href={`tel:${SITE.phone.replace(/[^+\d]/g, "")}`}>{SITE.phone}</a></div></div>
+              )}
               <div className="ic"><span aria-hidden="true">🌍</span><div><b>Location</b>Remote — working worldwide</div></div>
               <div className="ic"><span aria-hidden="true">⏱</span><div><b>Hours</b>{SITE.hours}</div></div>
               <div className="ic"><span aria-hidden="true">💼</span><div><b>Careers</b><a href={`mailto:${SITE.email}?subject=Career enquiry`}>{SITE.email}</a></div></div>

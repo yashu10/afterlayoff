@@ -8,7 +8,7 @@ import { PostCard } from "@/components/Cards";
 import { POSTS, getPost, unsplash } from "@/data/posts";
 import { SITE, abs } from "@/data/site";
 import { fmtDate, withBaseInHtml } from "@/lib/paths";
-import { articleLd, buildMetadata, stripHtml } from "@/lib/seo";
+import { articleLd, buildMetadata, howToLd, stripHtml } from "@/lib/seo";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const p = getPost((await params).slug);
   if (!p) return {};
   return buildMetadata({
-    title: p.title,
-    description: p.tldr.length > 160 ? p.excerpt : p.tldr,
+    title: p.seoTitle ?? p.title,
+    description: p.tldr, // buildMetadata() trims it to ~155 chars at a word boundary
     path: `/blog/${p.slug}/`,
     image: unsplash(p.imgId, 1200),
     type: "article",
@@ -93,6 +93,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
+      {p.howto && <JsonLd data={howToLd(p.howto, path)} />}
       <JsonLd data={articleLd({ title: p.title, slug: p.slug, tldr: p.tldr, date: p.date, updated: p.updated, cat: p.cat, image: unsplash(p.imgId, 1200), wordCount: words })} />
     </>
   );

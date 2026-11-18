@@ -5,6 +5,8 @@ export type Faq = { q: string; a: string };
 export type Post = {
   slug: string;
   title: string;
+  /** shorter <title> (<=45 chars; the site template adds " | After Layoff") */
+  seoTitle?: string;
   cat: string;
   date: string;
   updated?: string;
@@ -15,6 +17,8 @@ export type Post = {
   excerpt: string;
   tldr: string;
   faqs: Faq[];
+  /** optional HowTo structured data (steps must also be visible in the body) */
+  howto?: { name: string; steps: [string, string][] };
   body: string;
 };
 
@@ -24,6 +28,7 @@ export const unsplash = (id: string, w = 900) =>
 export const POSTS: Post[] = [
 {
   "slug": "llms-for-business-what-works",
+    "seoTitle": "LLMs for Business in 2026: What Works vs Hype",
   "title": "LLMs for business in 2026: what actually works (and what is hype)",
   "cat": "LLM",
   "date": "2026-11-02",
@@ -48,6 +53,7 @@ export const POSTS: Post[] = [
 },
 {
   "slug": "ai-agents-explained",
+    "seoTitle": "AI Agents Explained for Business (2026 Guide)",
   "title": "AI agents explained: what they can (and cannot) do for your business",
   "cat": "AI",
   "date": "2026-11-01",
@@ -72,6 +78,7 @@ export const POSTS: Post[] = [
 },
 {
   "slug": "rag-vs-fine-tuning",
+    "seoTitle": "RAG vs Fine-Tuning: Which Should You Use?",
   "title": "RAG vs fine-tuning: which one does your business need?",
   "cat": "LLM",
   "date": "2026-10-31",
@@ -85,7 +92,7 @@ export const POSTS: Post[] = [
   "faqs": [
     {
       "q": "Is RAG better than fine-tuning?",
-      "a": "For adding company knowledge, usually yes: it is easier to update, cites sources and needs no training. Fine-tuning suits consistent style, format or specialised tasks."
+      "a": "RAG (retrieval-augmented generation) lets a language model answer from your own documents by searching them first, then citing the sources. For company knowledge it is usually cheaper and easier to update than fine-tuning. Fine-tuning suits a consistent style or specialised task, so many projects start with RAG."
     },
     {
       "q": "Can RAG and fine-tuning be combined?",
@@ -96,6 +103,8 @@ export const POSTS: Post[] = [
 },
 {
   "slug": "build-ai-chatbot-for-business",
+    "seoTitle": "How to Build an AI Chatbot for Your Business",
+    "howto": {"name": "How to build an AI chatbot for your business", "steps": [["Define the job", "Pick one or two jobs and a success metric, such as resolving 40% of questions without a human."], ["Collect and clean your knowledge", "Gather FAQs, product pages, policies and past answers; remove outdated and conflicting content."], ["Choose the approach", "Use a no-code tool for simple FAQ bots, or a custom RAG bot for accuracy, branding and integrations."], ["Add guardrails", "Limit topics, require sources, add a clear path to a human and tell users they are talking to an AI."], ["Connect channels and tools", "Link the website widget, WhatsApp, email, CRM, order system or calendar."], ["Test, launch, improve", "Test with real questions, launch to a small group and review unanswered or wrong replies weekly."]]},
   "title": "How to build an AI chatbot for your business: a step-by-step guide",
   "cat": "AI",
   "date": "2026-10-30",
@@ -109,17 +118,18 @@ export const POSTS: Post[] = [
   "faqs": [
     {
       "q": "How long does it take to build an AI chatbot?",
-      "a": "A simple FAQ bot can be live in 1–2 weeks. A custom, integrated assistant usually takes 6–10 weeks."
+      "a": "A simple FAQ chatbot built on your own documents can go live in one to two weeks. A custom, integrated assistant that connects to your CRM, WhatsApp or order system usually takes six to ten weeks, including testing with real customer questions, guardrails and a human hand-off path."
     },
     {
       "q": "What is the biggest mistake when launching a chatbot?",
       "a": "Launching without testing real customer questions and without a path to a human agent."
     }
   ],
-  "body": "<p>A well-built AI chatbot can answer customers around the clock and free your team from repetitive questions. A badly built one frustrates people. Here is the process we follow.</p>\n<h2>Step 1: Define the job</h2><p>What should the bot do? Answer FAQs, qualify leads, book appointments, track orders? Choose one or two jobs and a success metric, like \"resolve 40% of questions without a human\".</p>\n<h2>Step 2: Collect and clean your knowledge</h2><p>Gather FAQs, product pages, policies and past support answers. Remove outdated and conflicting content — the bot will repeat whatever you feed it.</p>\n<h2>Step 3: Choose the approach</h2><ul><li><b>No-code tools:</b> fastest for simple FAQ bots.</li><li><b>Custom RAG bot:</b> best when you need accuracy, branding, integrations and control.</li></ul>\n<h2>Step 4: Add guardrails</h2><p>Limit topics, require sources, and add a clear path to a human. Tell users they are talking to an AI.</p>\n<h2>Step 5: Connect channels and tools</h2><p>Website widget, WhatsApp, email, CRM, order system or calendar — this is where the bot becomes genuinely useful.</p>\n<h2>Step 6: Test, launch, improve</h2><p>Test with real questions, launch to a small group, and review unanswered or wrong replies every week.</p>\n<h2>Typical timeline</h2><p>A simple bot can be live in 1–2 weeks; a custom, integrated assistant usually takes 6–10 weeks.</p>\n<h2>Common mistakes</h2><ul><li>Launching without testing on real customer questions</li><li>No human hand-off</li><li>Never updating the knowledge base</li><li>Measuring nothing</li></ul>\n<p>Need a chatbot built? <a href=\"/contact/\">Tell us your use case</a>.</p>"
+  "body": "<p>A well-built AI chatbot can answer customers around the clock and free your team from repetitive questions. A badly built one frustrates people. Here is the process we follow.</p>\n<h2 id=\"step-1\">Step 1: Define the job</h2><p>What should the bot do? Answer FAQs, qualify leads, book appointments, track orders? Choose one or two jobs and a success metric, like \"resolve 40% of questions without a human\".</p>\n<h2 id=\"step-2\">Step 2: Collect and clean your knowledge</h2><p>Gather FAQs, product pages, policies and past support answers. Remove outdated and conflicting content — the bot will repeat whatever you feed it.</p>\n<h2 id=\"step-3\">Step 3: Choose the approach</h2><ul><li><b>No-code tools:</b> fastest for simple FAQ bots.</li><li><b>Custom RAG bot:</b> best when you need accuracy, branding, integrations and control.</li></ul>\n<h2 id=\"step-4\">Step 4: Add guardrails</h2><p>Limit topics, require sources, and add a clear path to a human. Tell users they are talking to an AI.</p>\n<h2 id=\"step-5\">Step 5: Connect channels and tools</h2><p>Website widget, WhatsApp, email, CRM, order system or calendar — this is where the bot becomes genuinely useful.</p>\n<h2 id=\"step-6\">Step 6: Test, launch, improve</h2><p>Test with real questions, launch to a small group, and review unanswered or wrong replies every week.</p>\n<h2>Typical timeline</h2><p>A simple bot can be live in 1–2 weeks; a custom, integrated assistant usually takes 6–10 weeks.</p>\n<h2>Common mistakes</h2><ul><li>Launching without testing on real customer questions</li><li>No human hand-off</li><li>Never updating the knowledge base</li><li>Measuring nothing</li></ul>\n<p>Need a chatbot built? <a href=\"/contact/\">Tell us your use case</a>.</p>"
 },
 {
   "slug": "safe-ai-privacy-for-companies",
+    "seoTitle": "Using LLMs Safely: Protect Company Data",
   "title": "Using AI safely: how to protect company data when using LLMs",
   "cat": "AI",
   "date": "2026-10-29",
@@ -144,6 +154,7 @@ export const POSTS: Post[] = [
 },
 {
   "slug": "laid-off-start-it-company",
+    "seoTitle": "Start an IT Company After a Layoff: 5 Steps",
   "title": "Laid off? Here is how to turn it into your own IT company",
   "cat": "Startup",
   "date": "2026-10-28",
@@ -168,6 +179,7 @@ export const POSTS: Post[] = [
 },
 {
   "slug": "website-cost-india",
+    "seoTitle": "Website Cost in India (2026): Pricing Guide",
   "title": "How much does a business website cost in 2026?",
   "cat": "Web",
   "date": "2026-10-22",
@@ -192,6 +204,7 @@ export const POSTS: Post[] = [
 },
 {
   "slug": "ux-design-process",
+    "seoTitle": "Our UI/UX Design Process: Research to Handoff",
   "title": "Our UI/UX design process: from research to handoff",
   "cat": "Design",
   "date": "2026-10-15",
@@ -216,6 +229,7 @@ export const POSTS: Post[] = [
 },
 {
   "slug": "social-media-for-small-business",
+    "seoTitle": "7 Social Media Design Tips for Small Business",
   "title": "7 social media design tips for small businesses",
   "cat": "Social Media",
   "date": "2026-10-08",
@@ -264,6 +278,7 @@ export const POSTS: Post[] = [
 },
 {
   "slug": "what-is-devops-for-startups",
+    "seoTitle": "DevOps for Startups: What It Is & Why Now",
   "title": "DevOps for startups: what it is and why you need it early",
   "cat": "DevOps",
   "date": "2026-10-25",
@@ -288,6 +303,7 @@ export const POSTS: Post[] = [
 },
 {
   "slug": "ai-for-small-business",
+    "seoTitle": "Where AI Saves Time in a Small Business",
   "title": "Where AI can actually save time in a small business",
   "cat": "AI",
   "date": "2026-09-22",

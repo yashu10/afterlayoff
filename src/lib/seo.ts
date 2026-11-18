@@ -69,7 +69,13 @@ export function siteGraph() {
         email: SITE.email,
         foundingDate: String(SITE.foundingYear),
         areaServed: SITE.areaServed,
-        address: { "@type": "PostalAddress", addressCountry: SITE.country },
+        address: {
+          "@type": "PostalAddress",
+          ...(SITE.address.locality ? { addressLocality: SITE.address.locality } : {}),
+          ...(SITE.address.region ? { addressRegion: SITE.address.region } : {}),
+          addressCountry: SITE.country,
+        },
+        ...(SITE.phone ? { telephone: SITE.phone } : {}),
         priceRange: "$$",
         founder: FOUNDERS.map((f) => ({ "@id": `${SITE_URL}/#${f.name.toLowerCase().replace(/\s+/g, "-")}` })),
         knowsAbout: ["Web development", "Mobile app development", "Artificial intelligence", "Large language models", "Retrieval-augmented generation", "AI agents", "Workflow automation", "Cloud computing", "DevOps", "UI/UX design", "Social media design", "Branding"],
@@ -171,6 +177,16 @@ export function articleLd(p: { title: string; slug: string; tldr: string; date: 
     publisher: { "@id": ORG_ID },
     isPartOf: { "@id": SITE_ID },
     speakable: { "@type": "SpeakableSpecification", cssSelector: [".tldr", "h1"] },
+  };
+}
+
+export function howToLd(h: { name: string; steps: [string, string][] }, path: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": abs(path) + "#howto",
+    name: h.name,
+    step: h.steps.map(([name, text], i) => ({ "@type": "HowToStep", position: i + 1, name, text, url: `${abs(path)}#step-${i + 1}` })),
   };
 }
 

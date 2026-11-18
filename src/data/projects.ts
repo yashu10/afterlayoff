@@ -129,7 +129,7 @@ export const ALL_PROJECTS: Project[] = [
   },
   {
     real: true, slug: 'social-media-design', title: 'Social Media Design', cat: 'Social Media', icon: '📲', img: '/images/projects/social-media-design.jpg', grad: 'linear-gradient(135deg,#34104f,#6d2a9c 55%,#985fda)',
-    tag: 'Posts, carousels and campaign creatives for 10+ brands.',
+    tag: 'Posts, carousels and campaign creatives for 10+ brands across healthcare, technology, real estate, art and education.',
     meta: [['Type', 'Social media design'], ['Role', 'Designer'], ['Formats', 'Square, portrait and story'], ['Tools', 'Figma · Photoshop · Canva']],
     decisions: [['Brands served', 'Healthcare (Dental Care), technology, real estate, art, food & beverage, education and more — a consistent look per brand.'], ['Knowledge-sharing posts', 'Clear, educational carousels that make complex topics easy to scan.'], ['Festival & occasion posts', 'Greetings and campaign creatives in portrait format, ready to schedule.']],
     outcome: 'A consistent, eye-catching look for each brand across every campaign.'

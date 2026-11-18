@@ -7,7 +7,7 @@ import { POSTS } from "@/data/posts";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date("2026-11-04");
+  const now = new Date(); // regenerated on every build, so lastmod reflects the latest deploy
   const page = (path: string, priority: number, changeFrequency: "weekly" | "monthly" | "yearly", lastModified = now) => ({ url: abs(path), lastModified, changeFrequency, priority });
   return [
     page("/", 1, "weekly"),

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { SITE } from "@/data/site";
 
@@ -81,10 +82,21 @@ export default function ContactForm() {
         Tell us more
         <textarea name="msg" rows={4} required placeholder="A few lines about your project…" />
       </label>
+      <label className="consent">
+        <input type="checkbox" name="consent" required />
+        <span>
+          I agree to the <Link href="/privacy/">Privacy Policy</Link> and to being contacted about my enquiry.
+        </span>
+      </label>
       <input type="text" name="_honey" tabIndex={-1} autoComplete="off" style={{ position: "absolute", left: -9999 }} aria-hidden="true" />
       <button className="btn" type="submit" disabled={busy}>
         Send message →
       </button>
+      <noscript>
+        <small className="note">
+          This form needs JavaScript. Please email us directly at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+        </small>
+      </noscript>
       <small className="note" role="status" aria-live="polite" style={status.tone === "warn" ? { color: "#b45309" } : undefined}>
         {status.text}
       </small>

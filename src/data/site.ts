@@ -17,6 +17,10 @@ export const SITE = {
   areaServed: "Worldwide",
   foundingYear: 2026,
   hours: "Mon–Sat, 10am–7pm IST",
+  // Fill these in when you have them: they appear on the Contact page and in the Organization schema (empty = hidden).
+  phone: "", // e.g. "+91 99999 99999"
+  whatsapp: "", // digits only with country code, e.g. "919999999999"
+  address: { locality: "", region: "" }, // e.g. { locality: "Ahmedabad", region: "Gujarat" }
   // Add real profile URLs here (LinkedIn company page, Instagram, X, Behance...) to strengthen entity signals.
   sameAs: [] as string[],
   // Paste a Web3Forms access key (free, sent to contact@afterlayoff.in via https://web3forms.com) to enable the contact form.

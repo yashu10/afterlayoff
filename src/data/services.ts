@@ -5,6 +5,8 @@ import type { Faq } from "./posts";
 export type Service = {
   slug: string;
   title: string;
+  /** shorter <title> (<=45 chars; the site template adds " | After Layoff") */
+  seoTitle?: string;
   short: string;
   icon: string;
   headline: string;
@@ -23,6 +25,7 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     slug: "web-development",
+    seoTitle: "Web Development Company India: Next.js & SaaS",
     title: "Web Development",
     short: "Fast, SEO-ready websites and web apps built with modern frameworks.",
     icon: "🌐",
@@ -47,6 +50,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "mobile-app-development",
+    seoTitle: "Mobile App Development India | Flutter & iOS",
     title: "Mobile App Development",
     short: "iOS & Android apps from a single codebase — smooth and store-ready.",
     icon: "📱",
@@ -70,6 +74,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "ai-automation",
+    seoTitle: "AI Development Company India: LLM & RAG",
     title: "AI & Automation",
     short: "Chatbots, LLM integrations and workflows that save hours.",
     icon: "🤖",
@@ -84,7 +89,7 @@ export const SERVICES: Service[] = [
     process: [["Pick the use case", "One repetitive process with a clear metric."], ["Prototype", "Small pilot with your real data."], ["Evaluate", "Test set of real questions; measure accuracy."], ["Deploy & improve", "Monitoring, guardrails and weekly review."]],
     faqs: [
       { q: "What AI services does After Layoff offer?", a: "We build AI chatbots, RAG knowledge assistants, AI agents, document-processing pipelines and workflow automation, and run AI strategy workshops." },
-      { q: "How long does it take to build an AI chatbot?", a: "A simple FAQ bot can be live in 1–2 weeks; a custom, integrated assistant usually takes 6–10 weeks." },
+      { q: "How long does it take to build an AI chatbot?", a: "A simple FAQ chatbot built on your own documents can go live in one to two weeks. A custom, integrated assistant that connects to your CRM, WhatsApp or order system usually takes six to ten weeks, including testing with real customer questions, guardrails and a human hand-off path." },
       { q: "Is my company data safe when using LLMs?", a: "We design for privacy: least-privilege access, no training on your data under business terms, optional self-hosted models and full audit logs." },
       { q: "Should we use RAG or fine-tuning?", a: "Start with RAG when the model needs your information; consider fine-tuning only when you need a consistent style or specialised behaviour." },
     ],
@@ -94,6 +99,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "cloud-devops",
+    seoTitle: "Cloud & DevOps Services India: AWS, CI/CD",
     title: "Cloud & DevOps",
     short: "Migrations, CI/CD and infrastructure that stays up and stays lean.",
     icon: "☁️",
@@ -117,6 +123,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "ui-ux-design",
+    seoTitle: "UI/UX Design Agency India: Web, Mobile, SaaS",
     title: "UI / UX Design",
     short: "Interfaces people love — research-led, tested and built to convert.",
     icon: "🎨",
@@ -140,12 +147,13 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "social-media-design",
+    seoTitle: "Social Media Design Services: Posts & Ads",
     title: "Social Media Design & Management",
     short: "Posts, carousels and campaign creatives that build your brand.",
     icon: "📲",
     headline: "Social media design and content creatives",
     answer:
-      "Social media design creates the posts, carousels, stories and campaign graphics a brand publishes online. After Layoff designs consistent, scroll-stopping creatives for Instagram, Facebook, LinkedIn and more, including monthly content calendars and ad creatives.",
+      "Social media design creates the posts, carousels, stories and campaign graphics a brand publishes online. After Layoff designs consistent, eye-catching creatives for Instagram, Facebook, LinkedIn and more, including monthly content calendars and ad creatives.",
     intro:
       "A consistent look builds trust. We have designed posts and campaign creatives for 10+ brands across healthcare, technology, real estate, art, food & beverage and education.",
     features: ["Posts, carousels and stories", "Monthly content calendars", "Festival and campaign creatives", "Reel and video cover designs", "Ad creatives for Meta and Google", "Page setup and profile branding"],
@@ -163,6 +171,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "graphic-design-branding",
+    seoTitle: "Logo & Brand Identity Design Services India",
     title: "Graphic Design & Branding",
     short: "Logos, brand kits, brochures and print — sharp everywhere.",
     icon: "✒️",
@@ -186,6 +195,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "tech-consulting",
+    seoTitle: "Dedicated Developers & CTO-as-a-Service",
     title: "Tech Talent & Consulting",
     short: "Embed our engineers or get a clear technology roadmap.",
     icon: "🧑‍💻",

@@ -4,8 +4,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { SITE } from "@/data/site";
 import { buildMetadata, webPageLd } from "@/lib/seo";
 
-const DESC = "Join After Layoff — a remote-first IT company that gives talented engineers and designers a second launch. See open roles.";
-export const metadata: Metadata = buildMetadata({ title: "Careers — Join a Remote-First Team", description: DESC, path: "/careers/" });
+const DESC = "Join After Layoff, a remote-first IT company for engineers and designers. See open roles in full-stack, Flutter, UI/UX, graphic design and DevOps.";
+export const metadata: Metadata = buildMetadata({ title: "Careers: Join Our Remote-First IT Team", description: DESC, path: "/careers/" });
 
 const ROLES: [string, string, string][] = [
   ["Full-Stack Developer", "React · Node.js · PostgreSQL", "Remote · Full-time"],

@@ -1,7 +1,7 @@
 import type { Faq } from "./posts";
 
 export const HOME_FAQS: Faq[] = [
-  { q: "What is After Layoff?", a: "After Layoff is an India-based, remote-first IT company founded by engineers and designers who turned a layoff into a launchpad. It builds websites, mobile apps, AI and automation solutions, cloud and DevOps infrastructure, UI/UX design, social media creatives and branding." },
+  { q: "What is After Layoff?", a: "After Layoff is an India-based, remote-first IT company founded in 2026 by two engineers and designers who turned a layoff into a launchpad. It builds websites, mobile apps, AI and LLM solutions, cloud and DevOps infrastructure, UI/UX design, social media creatives and branding for startups and growing businesses worldwide." },
   { q: "What services does After Layoff offer?", a: "Web development, mobile app development, AI & automation (chatbots, LLM and RAG integrations, AI agents), cloud & DevOps, UI/UX design, social media design, graphic design & branding, and tech consulting with dedicated developers." },
   { q: "Who does After Layoff work with?", a: "Startups, small and medium businesses and growing companies in India and worldwide. The team is remote-first and works across time zones." },
   { q: "How do I start a project with After Layoff?", a: "Send a short brief through the contact page or email contact@afterlayoff.in. You get a reply within 24 hours, then a free discovery call and a proposal with timeline, team and fixed or capped pricing." },

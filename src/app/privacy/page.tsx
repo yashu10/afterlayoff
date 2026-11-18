@@ -5,8 +5,8 @@ import { PRIVACY_HTML, PRIVACY_UPDATED } from "@/data/privacy";
 import { fmtDate, withBaseInHtml } from "@/lib/paths";
 import { buildMetadata, webPageLd } from "@/lib/seo";
 
-const DESC = "How After Layoff collects, uses, shares and protects your personal information.";
-export const metadata: Metadata = buildMetadata({ title: "Privacy Policy", description: DESC, path: "/privacy/" });
+const DESC = "How After Layoff collects, uses, shares and protects personal information from our website, contact form and client projects, and your rights under DPDP and GDPR.";
+export const metadata: Metadata = buildMetadata({ title: "Privacy Policy: How We Handle Your Data", description: DESC, path: "/privacy/" });
 
 export default function Privacy() {
   return (
