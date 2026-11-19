@@ -5,7 +5,7 @@
   "description": "After Layoff \u2014 IT company website (Next.js, static export)",
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build --webpack && node scripts/postbuild.mjs",
+    "build": "next build --webpack && node scripts/postbuild.mjs md && next build --webpack && node scripts/postbuild.mjs",
     "start": "npx serve dist",
     "typecheck": "tsc --noEmit"
   },

@@ -35,7 +35,7 @@ export const viewport: Viewport = { themeColor: "#0a5cff", width: "device-width"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${inter.variable} ${grotesk.variable}`} style={{ ["--logo-url" as string]: `url(${BASE_PATH}/logo.png)` }}>
+    <html lang="en-IN" className={`${inter.variable} ${grotesk.variable}`} style={{ ["--logo-url" as string]: `url(${BASE_PATH}/logo-hero.webp)` }}>
       <body>
         {/* resource discovery for agents (React hoists these into <head>); same targets as the homepage Link header */}
         <link rel="describedby" type="text/plain" href={asset("/llms.txt")} title="llms.txt" />

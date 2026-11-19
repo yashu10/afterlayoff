@@ -65,7 +65,7 @@ export default function Home() {
             </ul>
           </div>
           <Tilt>
-            <img src={asset("/logo.png")} alt="After Layoff logo — We Build What's Next" width={440} height={440} fetchPriority="high" />
+            <img src={asset("/logo-hero.webp")} alt="After Layoff logo — We Build What's Next" width={440} height={440} fetchPriority="high" />
           </Tilt>
         </div>
       </section>

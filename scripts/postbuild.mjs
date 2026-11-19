@@ -1,14 +1,24 @@
-// Next.js static export (trailingSlash) writes segment-prefetch files as  <route>/__next.<seg>/<name>.txt
-// (and  <route>/__next.<seg>/<sub>/<name>.txt  for dynamic routes), but the client requests them as
-// <route>/__next.<seg>.<name>.txt . Plain static hosts (GitHub Pages, Hostinger, nginx without rewrites) therefore
-// 404 those prefetch requests. Copy each file to the flat name so both layouts work.
-import { readdirSync, statSync, copyFileSync, existsSync } from "node:fs";
-import { join } from "node:path";
+// Post-build helper for the static export. Two modes (see "build" in package.json):
+//
+//   node scripts/postbuild.mjs md   -> after the 1st `next build`: write a Markdown twin of every page into public/
+//                                      (about/ -> public/about.md, home -> public/index.md). The 2nd `next build` then
+//                                      publishes them as normal static files. Hosts such as Hostinger and Vercel only
+//                                      serve files Next knows about (public/ is known), not files added after the build.
+//   node scripts/postbuild.mjs      -> after the 2nd `next build`: fix prefetch file names (below).
+//
+// Prefetch fix: Next writes segment-prefetch files as <route>/__next.<seg>/<name>.txt (and a deeper layout for dynamic
+// routes) but the client requests <route>/__next.<seg>.<name>.txt . Plain static hosts 404 those requests, so each file
+// is copied to the flat name.
+import { readdirSync, statSync, copyFileSync, existsSync, readFileSync, writeFileSync, mkdirSync, unlinkSync } from "node:fs";
+import { join, relative, dirname, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const OUT = fileURLToPath(new URL("../" + (process.env.NEXT_DIST_DIR || "dist"), import.meta.url));
-let copied = 0;
+const PUBLIC = fileURLToPath(new URL("../public", import.meta.url));
+const MODE = process.argv[2];
 
+// ------------------------------------------------------------- prefetch file names
+let copied = 0;
 function flatten(routeDir, dir, prefix) {
   for (const name of readdirSync(dir)) {
     const full = join(dir, name);
@@ -19,7 +29,6 @@ function flatten(routeDir, dir, prefix) {
     }
   }
 }
-
 function walk(dir) {
   for (const name of readdirSync(dir)) {
     const full = join(dir, name);
@@ -29,17 +38,7 @@ function walk(dir) {
   }
 }
 
-walk(OUT);
-console.log(`postbuild: created ${copied} flat prefetch files`);
-
-// ---------------------------------------------------------------------------------------------------------------
-// Markdown twins: for every page write a ".md" version next to it (about/ -> about.md, home -> index.md).
-// Agents that ask for "Accept: text/markdown" (or follow <link rel="alternate" type="text/markdown">) get clean text
-// instead of HTML, which costs far fewer tokens. Built from the rendered <main> of each page.
-// ---------------------------------------------------------------------------------------------------------------
-import { readFileSync, writeFileSync } from "node:fs";
-import { relative, sep } from "node:path";
-
+// ------------------------------------------------------------- Markdown twins
 const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://afterlayoff.in").replace(/\/$/, "");
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
@@ -88,9 +87,17 @@ function htmlToMarkdown(html) {
   h = h.replace(/<\/?(ul|ol)\b[^>]*>/gi, "\n");
   h = h.replace(/<p\b[^>]*>([\s\S]*?)<\/p>/gi, (m, t) => `\n\n${inline(t)}\n\n`);
   h = h.replace(/<br\s*\/?>/gi, "\n").replace(/<\/(div|section|article|aside|figure|blockquote)>/gi, "\n\n");
-  h = decode(h.replace(/<[^>]+>/g, " "));          // drop any remaining tags (text between them stays)
+  h = decode(h.replace(/<[^>]+>/g, " ")); // drop any remaining tags (text between them stays)
   const body = h.split("\n").map((l) => l.replace(/[ \t]+/g, " ").trimEnd()).join("\n").replace(/\n{3,}/g, "\n\n").trim();
   return `---\ntitle: ${title}\ndescription: ${desc}\n---\n\n${body}\n`;
+}
+
+function removeOldMarkdown(dir) {
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name);
+    if (statSync(full).isDirectory()) removeOldMarkdown(full);
+    else if (name.endsWith(".md")) unlinkSync(full);
+  }
 }
 
 let mdCount = 0;
@@ -104,10 +111,19 @@ function writeMarkdown(dir) {
       const md = htmlToMarkdown(readFileSync(full, "utf8"));
       if (!md) continue;
       const rel = relative(OUT, dir).split(sep).join("/");
-      writeFileSync(join(OUT, rel === "" ? "index.md" : `${rel}.md`), md);
+      const target = join(PUBLIC, rel === "" ? "index.md" : `${rel}.md`);
+      mkdirSync(dirname(target), { recursive: true });
+      writeFileSync(target, md);
       mdCount++;
     }
   }
 }
-writeMarkdown(OUT);
-console.log(`postbuild: wrote ${mdCount} Markdown twins (.md)`);
+
+if (MODE === "md") {
+  removeOldMarkdown(PUBLIC);
+  writeMarkdown(OUT);
+  console.log(`postbuild: wrote ${mdCount} Markdown twins into public/`);
+} else {
+  walk(OUT);
+  console.log(`postbuild: created ${copied} flat prefetch files`);
+}

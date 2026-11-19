@@ -9,3 +9,9 @@ dist
 dist*
 hostinger-upload
 *.log
+
+# generated Markdown twins (scripts/postbuild.mjs md)
+/public/*.md
+/public/services/*.md
+/public/portfolio/*.md
+/public/blog/*.md
