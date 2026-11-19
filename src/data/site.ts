@@ -27,6 +27,11 @@ export const SITE = {
   web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "",
 };
 
+// How AI systems may use this site's content (https://contentsignals.org). Written into robots.txt as a Content-Signal line.
+//   search  : appear in search results     aiInput : be used as live context for AI answers (with citation)
+//   aiTrain : be used to train AI models   (set to true to allow it; the matching training crawlers are then un-blocked)
+export const CONTENT_SIGNALS = { search: true, aiInput: true, aiTrain: false };
+
 export const FOUNDERS = [
   { name: "Sagar Shah", role: "Co-Founder", jobTitle: "Co-Founder · AI & Python Backend Developer", photo: "/team/sagar-shah.webp" },
   { name: "Yash Patel", role: "Co-Founder", jobTitle: "Co-Founder · UI/UX & Brand Designer", photo: "/team/yash-patel.webp" },

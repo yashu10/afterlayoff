@@ -23,6 +23,9 @@ export const clip = (t: string, max = 155) => {
   return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:.\-–—]+$/, "") + "…";
 };
 
+/** Path of the Markdown twin generated at build time: "/" -> /index.md, "/about/" -> /about.md */
+export const mdPath = (path: string) => (path === "/" ? "/index.md" : path.replace(/\/$/, "") + ".md");
+
 /** Per-page metadata: title, description, canonical, Open Graph and Twitter cards. */
 export function buildMetadata(m: MetaInput): Metadata {
   const url = abs(m.path);
@@ -32,7 +35,7 @@ export function buildMetadata(m: MetaInput): Metadata {
     title: m.title,
     description,
     keywords: m.keywords,
-    alternates: { canonical: url },
+    alternates: { canonical: url, types: { "text/markdown": abs(mdPath(m.path)) } },
     robots: m.noindex ? { index: false, follow: false } : { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
     openGraph: {
       type: m.type ?? "website",

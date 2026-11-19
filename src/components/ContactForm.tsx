@@ -12,6 +12,13 @@ type Status = { text: string; tone: "ok" | "warn" | "" };
  * - Otherwise FormSubmit (needs a one-time activation click from the inbox).
  * - If both fail/time out, the visitor's email app opens with the message pre-filled.
  */
+// Declarative WebMCP: lets an in-browser agent discover and fill this form. No auto-submit: the visitor presses Send.
+const FORM_TOOL = {
+  toolname: "send_project_enquiry",
+  tooldescription: "Draft a project enquiry to After Layoff (web, mobile, AI, cloud, design). Fills the form; the visitor reviews, ticks the privacy consent and presses Send.",
+} as Record<string, string>;
+const param = (d: string) => ({ toolparamdescription: d }) as Record<string, string>;
+
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>({ text: "", tone: "" });
   const [busy, setBusy] = useState(false);
@@ -53,18 +60,18 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="form" onSubmit={onSubmit}>
+    <form className="form" onSubmit={onSubmit} {...FORM_TOOL}>
       <label>
         Your name
-        <input name="name" required placeholder="Jane Doe" autoComplete="name" />
+        <input name="name" required placeholder="Jane Doe" autoComplete="name" {...param("Full name of the person enquiring")} />
       </label>
       <label>
         Email
-        <input name="email" type="email" required placeholder="jane@company.com" autoComplete="email" />
+        <input name="email" type="email" required placeholder="jane@company.com" autoComplete="email" {...param("Email address where After Layoff should reply")} />
       </label>
       <label>
         What do you need?
-        <select name="type" defaultValue="Website / Web App">
+        <select name="type" defaultValue="Website / Web App" {...param("Kind of work needed")}>
           {["Website / Web App", "Mobile App", "AI / Automation", "Cloud / DevOps", "UI / UX Design", "Social Media / Graphics", "Hire developers", "Something else"].map((o) => (
             <option key={o}>{o}</option>
           ))}
@@ -72,7 +79,7 @@ export default function ContactForm() {
       </label>
       <label>
         Budget (optional)
-        <select name="budget" defaultValue="Not sure yet">
+        <select name="budget" defaultValue="Not sure yet" {...param("Approximate budget range")}>
           {["Not sure yet", "Under $2,000", "$2,000 – $10,000", "$10,000 – $50,000", "$50,000+"].map((o) => (
             <option key={o}>{o}</option>
           ))}
@@ -80,7 +87,7 @@ export default function ContactForm() {
       </label>
       <label>
         Tell us more
-        <textarea name="msg" rows={4} required placeholder="A few lines about your project…" />
+        <textarea name="msg" rows={4} required placeholder="A few lines about your project…" {...param("Short description of the project, goals and timeline")} />
       </label>
       <label className="consent">
         <input type="checkbox" name="consent" required />

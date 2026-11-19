@@ -16,3 +16,19 @@ ErrorDocument 404 /404.html
   ExpiresByType text/css "access plus 7 days"
   ExpiresByType application/javascript "access plus 7 days"
 </IfModule>
+
+# --- Agent-friendly: Markdown twin for "Accept: text/markdown" + Link header on the homepage ---
+AddType text/markdown .md
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP:Accept} text/markdown [NC]
+  RewriteRule ^$ /index.md [L]
+  RewriteCond %{HTTP:Accept} text/markdown [NC]
+  RewriteCond %{DOCUMENT_ROOT}/$1.md -f
+  RewriteRule ^(.+?)/?$ /$1.md [L]
+</IfModule>
+<IfModule mod_headers.c>
+  Header append Vary Accept
+  SetEnvIf Request_URI "^/$" IS_HOME=1
+  Header set Link "</index.md>; rel=\"alternate\"; type=\"text/markdown\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\"" env=IS_HOME
+</IfModule>

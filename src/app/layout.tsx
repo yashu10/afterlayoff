@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import RevealInit from "@/components/RevealInit";
 import Protect from "@/components/Protect";
+import WebMcp from "@/components/WebMcp";
+import { asset } from "@/lib/paths";
 import { BASE_PATH, SITE, SITE_URL } from "@/data/site";
 import { siteGraph } from "@/lib/seo";
 
@@ -35,6 +37,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={`${inter.variable} ${grotesk.variable}`} style={{ ["--logo-url" as string]: `url(${BASE_PATH}/logo.png)` }}>
       <body>
+        {/* resource discovery for agents (React hoists these into <head>); same targets as the homepage Link header */}
+        <link rel="describedby" type="text/plain" href={asset("/llms.txt")} title="llms.txt" />
+        <link rel="sitemap" type="application/xml" href={asset("/sitemap.xml")} />
         <a href="#main" className="skip">
           Skip to content
         </a>
@@ -43,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <RevealInit />
         <Protect />
+        <WebMcp />
         <JsonLd data={siteGraph()} />
       </body>
     </html>

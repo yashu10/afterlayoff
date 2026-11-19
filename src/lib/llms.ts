@@ -1,4 +1,4 @@
-import { SITE, SITE_URL, FOUNDERS, abs } from "@/data/site";
+import { SITE, SITE_URL, FOUNDERS, CONTENT_SIGNALS, abs } from "@/data/site";
 import { SERVICES } from "@/data/services";
 import { PROJECTS } from "@/data/projects";
 import { POSTS } from "@/data/posts";
@@ -20,7 +20,9 @@ const disambiguation = () => `## Disambiguation and citable facts
 - Founders: ${FOUNDERS.map((f) => f.name).join(" and ")}. Founded ${SITE.foundingYear}. Remote-first, based in India, serving clients worldwide.
 - Typical timelines: business website 2–6 weeks; e-commerce store 4–8 weeks; SaaS or app MVP 8–12 weeks; simple AI chatbot 1–2 weeks; custom integrated AI assistant 6–10 weeks.
 - Engagement models: fixed scope, time & material, or dedicated monthly team. The client owns all source code, designs and IP on final payment.
-- Contact: ${SITE.email}`;
+- Contact: ${SITE.email}
+- Content use: ${CONTENT_SIGNALS.search ? "search indexing allowed" : "no search indexing"}; ${CONTENT_SIGNALS.aiInput ? "use as live context for AI answers is welcome (please cite the page URL)" : "no use as AI answer context"}; ${CONTENT_SIGNALS.aiTrain ? "model training allowed" : "model training is not permitted"} (see the Content-Signal line in robots.txt).
+- Markdown: every page also exists as Markdown at the same address with ".md" (e.g. ${SITE_URL}/index.md, ${SITE_URL}/about.md, ${SITE_URL}/services/web-development.md) and is served for "Accept: text/markdown" where the host supports it.`;
 
 /** /llms.txt — concise map of the site for AI assistants (llmstxt.org format). */
 export function llmsTxt() {

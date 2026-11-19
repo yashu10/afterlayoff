@@ -9,7 +9,7 @@ import { buildMetadata, collectionLd } from "@/lib/seo";
 
 const DESC = "Practical guides on AI and LLMs, AI agents, RAG, web development, DevOps, UI/UX design, social media, branding and building a startup — from the After Layoff team.";
 const base = buildMetadata({ title: "Blog — AI, LLM, Web, DevOps & Design Guides", description: DESC, path: "/blog/" });
-export const metadata: Metadata = { ...base, alternates: { ...base.alternates, types: { "application/rss+xml": "/feed.xml" } } };
+export const metadata: Metadata = { ...base, alternates: { ...base.alternates, types: { ...base.alternates?.types, "application/rss+xml": "/feed.xml" } } };
 
 export default function Blog() {
   const [first, ...rest] = POSTS;
